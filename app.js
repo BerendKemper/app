@@ -13,8 +13,9 @@ const makeLogger = require("filestream-logger");
 // github modules
 const App = require("framework");
 
-// imternal modules
+// internal modules
 const data_01 = require("./lib/data");
+const { benchmarkSync, benchmarkAsync } = require("./lib/benchmark");
 
 
 
@@ -108,7 +109,6 @@ app.get("/artists/:id/albums", (request, response) => {
 	response.sendJson(albums);
 });
 
-const { benchmarkSync, benchmarkAsync } = require("./lib/benchmark");
 
 const makeFunction = fn => {
 	if (!fn)
