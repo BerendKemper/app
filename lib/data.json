@@ -1,0 +1,33 @@
+{
+	"artists": {
+		"data": {
+			"mongol": "/artists/mongol",
+			"monkey": "/artists/monkey"
+		},
+		"mongol": {
+			"data": {
+				"id": "mongol",
+				"albums": "/artists/mongol/albums"
+			},
+			"albums": {
+				"A": {
+					"a1": 1,
+					"a2": 2
+				}
+			}
+		},
+		"monkey": {
+			"data": {
+				"id": "monkey",
+				"albums": "/artists/monkey/albums"
+			},
+			"albums": {
+				"B": {
+					"b1": 1,
+					"b2": 2,
+					"b3": 3
+				}
+			}
+		}
+	}
+}
