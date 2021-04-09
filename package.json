@@ -1,0 +1,27 @@
+{
+	"name": "app",
+	"version": "1.0.0",
+	"description": "Example webserver",
+	"main": "app.js",
+	"directories": {
+		"lib": "lib"
+	},
+	"scripts": {},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/BerendKemper/app.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/BerendKemper/app/issues"
+	},
+	"homepage": "https://github.com/BerendKemper/app#readme",
+	"dependencies": {
+		"filestream-logger": "^1.0.0",
+		"indent-model": "^1.0.4",
+		"locale-timezone-date": "^5.0.0",
+		"task-clock": "^2.2.0"
+	}
+}
