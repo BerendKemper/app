@@ -12,6 +12,7 @@ const makeLogger = require("filestream-logger");
 
 // github modules
 const App = require("framework");
+const FileOperator = require("file-operator");
 
 // internal modules
 const data_01 = require("./lib/data");
@@ -71,7 +72,15 @@ console.log(App.ApiRegister, App.ApiRegister.ApiRecord);
 
 
 
+// const app = new App(http, { logger: { log: function (...params) { console.log(this, params) }, error: logger.error } });
 const app = new App(http, { logger: { log: logger.log, error: logger.error } });
+
+new FileOperator("./apis.json").$read(true).$onReady(apis => {
+	app.loadApiRegister(apis);
+	console.log("Registered Api endpoints:", app.apis);
+	app.listen();
+});
+
 // console.log("Request DataParser:", app.requestDataParser);
 app.get("/favicon.ico", (request, response) => {
 	response.pipeFile("/favicon.ico");
@@ -88,7 +97,7 @@ app.get("/static/:dir/:file", (request, response) => {
 });
 
 app.get("/apis", (request, response) => {
-	response.sendJson(app.registeredApis);
+	response.sendJson(app.apis);
 });
 app.get("/artists", (request, response) => {
 	const users = data_01.artists.data;
@@ -141,5 +150,15 @@ app.post("/benchmark/async", (request, response) => {
 });
 //*/
 
-// console.log("Registered Api endpoints:", app.registeredApis);
-app.listen();
+
+
+
+process.on("SIGINT", () => {
+	logger.error("Node JS is now shutting down due to pressing ctrl + c");
+	FileOperator.saveAndExitAll({
+		log: logger.log,
+		callback() {
+			logger.log.onReady(() => process.exit());
+		}
+	});
+});
