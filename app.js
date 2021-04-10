@@ -158,7 +158,12 @@ process.on("SIGINT", () => {
 	FileOperator.saveAndExitAll({
 		log: logger.log,
 		callback() {
-			logger.log.onReady(() => process.exit());
+			let i = 0;
+			const awaitExit = () => {
+				if (--i === 0) process.exit();
+			};
+			for (const type in logger)
+				logger[type].destroy(awaitExit, i++);
 		}
 	});
 });
