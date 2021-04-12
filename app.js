@@ -72,7 +72,7 @@ console.log(App.ApiRegister, App.ApiRegister.ApiRecord);
 
 
 
-// const app = new App(http, { logger: { log: function (...params) { console.log(this, params) }, error: logger.error } });
+// const app = new App(http, { logger: { log: function (...params) { console.log(this, params) }, error: logger.error } }); // bug? this is server
 const app = new App(http, { logger: { log: logger.log, error: logger.error } });
 
 new FileOperator("./apis.json").$read(true).$onReady(apis => {
@@ -149,8 +149,6 @@ app.post("/benchmark/async", (request, response) => {
 	}
 });
 //*/
-
-
 
 
 process.on("SIGINT", () => {
