@@ -19,7 +19,7 @@
 	},
 	"homepage": "https://github.com/BerendKemper/app#readme",
 	"dependencies": {
-		"filestream-logger": "^1.0.1",
+		"filestream-logger": "^2.0.0",
 		"indent-model": "^1.0.4",
 		"locale-timezone-date": "^5.0.0",
 		"task-clock": "^2.2.0"

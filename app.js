@@ -1,14 +1,10 @@
 "use strict";
 
-// Node Js Api's 
-const http = require("http");
-const path = require("path");
-
 // npm modules
 const TaskClock = require("task-clock");
 const IndentModel = require("indent-model");
 const LocaleTimezoneDate = require("locale-timezone-date");
-const makeLogger = require("filestream-logger");
+const FilestreamLogger = require("filestream-logger");
 
 // github modules
 const App = require("framework");
@@ -33,8 +29,8 @@ const formatter = (data, callback) => {
 };
 
 const logger = {};
-logger.log = makeLogger("log", { dir: "loggers", name: new LocaleTimezoneDate().yyyymmdd(), formatter });
-logger.error = makeLogger("error", { dir: "loggers", name: new LocaleTimezoneDate().yyyymmdd(), formatter, extend: [logger.log] });
+logger.log = new FilestreamLogger("log", { dir: "loggers", name: new LocaleTimezoneDate().yyyymmdd(), formatter });
+logger.error = new FilestreamLogger("error", { dir: "loggers", name: new LocaleTimezoneDate().yyyymmdd(), formatter, extend: [logger.log] });
 // console.log("loggers:", logger);
 
 class LoggerClock extends TaskClock {
@@ -73,7 +69,7 @@ console.log(App.ApiRegister, App.ApiRegister.ApiRecord);
 
 
 // const app = new App(http, { logger: { log: function (...params) { console.log(this, params) }, error: logger.error } }); // bug? this is server
-const app = new App(http, { logger: { log: logger.log, error: logger.error } });
+const app = new App("http", { logger: { log: logger.log, error: logger.error } });
 
 new FileOperator("./apis.json").$read(true).$onReady(apis => {
 	app.loadApiRegister(apis);
@@ -81,7 +77,6 @@ new FileOperator("./apis.json").$read(true).$onReady(apis => {
 	app.listen();
 });
 
-// console.log("Request DataParser:", app.requestDataParser);
 app.get("/favicon.ico", (request, response) => {
 	response.pipeFile("/favicon.ico");
 });
