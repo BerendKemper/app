@@ -151,13 +151,7 @@ process.on("SIGINT", () => {
 	FileOperator.saveAndExitAll({
 		log: logger.log,
 		callback() {
-			let i = 0;
-			const awaitExit = dirpath => {
-				console.log("destroyed", dirpath);
-				if (--i === 0) process.exit();
-			};
-			for (const type in logger)
-				logger[type].destroy(awaitExit, i++);
+			FilestreamLogger.destroyAll(() => process.exit());
 		}
 	});
 });
