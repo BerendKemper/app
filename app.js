@@ -5,9 +5,9 @@ const TaskClock = require("task-clock");
 const IndentModel = require("indent-model");
 const LocaleTimezoneDate = require("locale-timezone-date");
 const FilestreamLogger = require("filestream-logger");
+const App = require("emperjs");
 
 // github modules
-const App = require("emperjs");
 const FileOperator = require("file-operator");
 
 // internal modules
