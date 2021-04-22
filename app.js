@@ -7,7 +7,7 @@ const LocaleTimezoneDate = require("locale-timezone-date");
 const FilestreamLogger = require("filestream-logger");
 
 // github modules
-const App = require("framework");
+const App = require("emperjs");
 const FileOperator = require("file-operator");
 
 // internal modules
@@ -61,6 +61,8 @@ console.log(App.IncomingMessage, App.ServerResponse);
 App.ApiRegister = class MyApiRegister extends App.ApiRegister { };
 App.ApiRegister.ApiRecord = class MyApiRecord extends App.ApiRegister.ApiRecord { };
 console.log(App.ApiRegister, App.ApiRegister.ApiRecord);
+
+console.log(App.IncomingMessage.dataParsers);
 //*/
 
 
@@ -69,7 +71,10 @@ console.log(App.ApiRegister, App.ApiRegister.ApiRecord);
 
 
 // const app = new App(http, { logger: { log: function (...params) { console.log(this, params) }, error: logger.error } }); // bug? this is server
-const app = new App("http", { logger: { log: logger.log, error: logger.error } });
+
+App.logger.log = logger.log;
+App.logger.error = logger.error;
+const app = new App("http");
 
 new FileOperator("./apis.json").$read(true).$onReady(apis => {
 	app.loadApiRegister(apis);
