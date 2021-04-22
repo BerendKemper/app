@@ -21,10 +21,10 @@
 	},
 	"homepage": "https://github.com/BerendKemper/app#readme",
 	"dependencies": {
-		"emperjs": "0.0.0",
-		"filestream-logger": "^2.0.0",
-		"indent-model": "^1.0.4",
-		"locale-timezone-date": "^5.0.0",
-		"task-clock": "^2.2.0"
+		"emperjs": "^0.x",
+		"filestream-logger": "^2.x",
+		"indent-model": "^1.x",
+		"locale-timezone-date": "^5.x",
+		"task-clock": "^2.x"
 	}
 }
