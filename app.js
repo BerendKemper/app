@@ -83,39 +83,42 @@ new FileOperator("./apis.json").$read(true).$onReady(apis => {
 });
 
 app.get("/favicon.ico", (request, response) => {
-	response.pipeFile("/favicon.ico");
+	response.sendFile("/favicon.ico");
 });
 
 app.get("/", (request, response) => {
-	response.pipeFile("/static/html/index.html");
+	response.sendFile("/static/html/index.html", false)
+		.sendFile("/static/html/second.html", false)
+		.sendFile("/static/html/third.html", false)
+		.sendFile("/static/html/large.html");
 });
 app.get("/myBenchmarks", (request, response) => {
-	response.pipeFile("/static/html/benchmark.html");
+	response.sendFile("/static/html/benchmark.html");
 });
 app.get("/static/:dir/:file", (request, response) => {
-	response.pipeFile(`/static/${request.params.dir}/${request.params.file}`);
+	response.sendFile(`/static/${request.params.dir}/${request.params.file}`);
 });
 
 app.get("/apis", (request, response) => {
-	response.sendJson(app.apis);
+	response.sendJson(200, app.apis);
 });
 app.get("/artists", (request, response) => {
 	const users = data_01.artists.data;
-	response.sendJson(users);
+	response.sendJson(200, users);
 });
 app.get("/artists/:id", (request, response) => {
 	const artist = data_01.artists[request.params.id];
 	if (!artist)
 		return response.sendError(404, new Error(`The Artist "${request.params.id}" does not exist`));
 	const user = artist.data;
-	response.sendJson(user);
+	response.sendJson(200, user);
 });
 app.get("/artists/:id/albums", (request, response) => {
 	const artist = data_01.artists[request.params.id];
 	if (!artist)
 		return response.sendError(404, new Error(`The Artist "${request.params.id}" does not exist`));
 	const albums = artist.albums;
-	response.sendJson(albums);
+	response.sendJson(200, albums);
 });
 
 
@@ -134,7 +137,7 @@ app.post("/benchmark/sync", (request, response) => {
 	try {
 		const fn = makeFunction(request.data.fn);
 		const opsPerSec = benchmarkSync(fn);
-		response.sendJson({ "ops/sec": opsPerSec });
+		response.sendJson(200, { "ops/sec": opsPerSec });
 	} catch (error) {
 		return response.sendError(409, error);
 	}
@@ -143,7 +146,7 @@ app.post("/benchmark/sync", (request, response) => {
 app.post("/benchmark/async", (request, response) => {
 	try {
 		const fn = makeFunction(request.data.fn);
-		benchmarkAsync(fn, opsPerSec => response.sendJson({ "ops/sec": opsPerSec }));
+		benchmarkAsync(fn, opsPerSec => response.sendJson(200, { "ops/sec": opsPerSec }));
 	} catch (error) {
 		return response.sendError(409, error);
 	}
