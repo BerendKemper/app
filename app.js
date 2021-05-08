@@ -58,9 +58,8 @@ App.IncomingMessage = class Req extends App.IncomingMessage { };
 App.ServerResponse = class Res extends App.ServerResponse { };
 console.log(App.IncomingMessage, App.ServerResponse);
 
-App.ApiRegister = class MyApiRegister extends App.ApiRegister { };
-App.ApiRegister.ApiRecord = class MyApiRecord extends App.ApiRegister.ApiRecord { };
-console.log(App.ApiRegister, App.ApiRegister.ApiRecord);
+App.ApiRecord = class MyApiRecord extends App.ApiRecord { };
+console.log(App.ApiRecord);
 
 console.log(App.IncomingMessage.dataParsers);
 //*/
