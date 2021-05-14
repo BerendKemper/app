@@ -68,9 +68,6 @@ console.log(App.IncomingMessage.dataParsers);
 ///////////////////////////////////////////////////////////////
 
 
-
-// const app = new App(http, { logger: { log: function (...params) { console.log(this, params) }, error: logger.error } }); // bug? this is server
-
 App.logger.log = logger.log;
 App.logger.error = logger.error;
 const app = new App("http");
@@ -80,6 +77,8 @@ new FileOperator("./apis.json").$read(true).$onReady(apis => {
 	console.log("Registered Api endpoints:", app.apis);
 	app.listen();
 });
+
+
 
 app.get("/favicon.ico", (request, response) => {
 	response.sendFile("/favicon.ico");
