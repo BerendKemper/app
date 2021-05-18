@@ -38,13 +38,15 @@ const benchmarkFunction = function load() {
 }();
 const callbackQueue = new CallbackQueue();
 
-/*
+//*
 callbackQueue.push(callback => {
 	benchmarkFunction.sync(fn_forOf_array, data => {
 		console.log("fn_forOf_array ops/sec:", data["ops/sec"]);
 		callback();
 	});
 });
+
+/*
 callbackQueue.push(callback => {
 	benchmarkFunction.sync(fn_forIn_array, data => {
 		console.log("fn_forIn_array ops/sec:", data["ops/sec"]);

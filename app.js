@@ -134,7 +134,7 @@ const makeFunction = fn => {
 };
 app.post("/benchmark/sync", (request, response) => {
 	try {
-		const fn = makeFunction(request.data.fn);
+		const fn = makeFunction(request.body.fn);
 		const opsPerSec = benchmarkSync(fn);
 		response.sendJson(200, { "ops/sec": opsPerSec });
 	} catch (error) {
