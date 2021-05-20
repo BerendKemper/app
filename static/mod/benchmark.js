@@ -136,7 +136,7 @@ export const fn_queue_with_nextWrapper = () => {
 			return this.#queue.length
 		};
 	};
-	const queue = new CallbackQueue();
+	let queue = new CallbackQueue();
 	function queueTick(next, param) {
 		const asignParam = param;
 		next();
@@ -199,7 +199,7 @@ export const fn_queue_no_nextWrapper = () => {
 			return this.#queue.length
 		};
 	};
-	const queue = new CallbackQueue();
+	let queue = new CallbackQueue();
 	function queueTick(next, param) {
 		const asignParam = param;
 		next();
@@ -216,6 +216,7 @@ export const fn_queue_no_nextWrapper = () => {
 		},
 		cleanupFunction() {
 			queue.destroy();
+			queue = null;
 		}
 	};
 };
