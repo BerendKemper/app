@@ -2,18 +2,40 @@
 export class CallbackQueue {
 	#index = 0;
 	#queue = [];
-	#next() {
-		if (++this.#index < this.#queue.length)
-			return this.#queue[this.#index](() => this.#next());
-		this.clear();
+	#parent = null;
+	constructor(parent) {
+		if (typeof parent !== "undefined")
+			this.#parent = parent;
 	};
-	push(callback) {
-		this.#queue.push(callback);
-		if (this.#index === this.#queue.length - 1)
-			callback(() => this.#next());
+	#next() {
+		if (++this.#index < this.#queue.length) {
+			const { callback, context } = this.#queue[this.#index];
+			this.#queue[this.#index] = null;
+			return callback.call(this.#parent ?? this, () => this.#next(), context);
+		}
+		this.#index = 0;
+		this.#queue = [];
+	};
+	push(callback, context) {
+		if (this.#queue.length === 0) {
+			this.#queue.length = 1;
+			return callback.call(this.#parent ?? this, () => this.#next(), context);
+		}
+		this.#queue.push({ callback, context });
 	};
 	clear() {
 		this.#index = 0;
 		this.#queue = [];
+	};
+	destroy() {
+		this.#parent = null;
+		this.#index = 0;
+		this.#queue = [];
+	};
+	get index() {
+		return this.#index;
+	};
+	get length() {
+		return this.#queue.length
 	};
 };

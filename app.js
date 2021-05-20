@@ -13,7 +13,7 @@ const FileOperator = require("file-operator");
 
 // internal modules
 const data_01 = require("./lib/data");
-const { benchmarkSync, benchmarkAsync } = require("./lib/benchmark");
+const { benchmarkSync } = require("./lib/benchmark");
 
 
 
@@ -121,22 +121,26 @@ app.get("/artists/:id/albums", (request, response) => {
 });
 
 
-const makeFunction = fn => {
+const makeBenchObject = fn => {
 	if (!fn)
 		throw new TypeError(`fn is falsy: ${fn}`);
 	fn = new Function("return " + fn + ";")();
 	if (typeof fn !== "function")
 		throw new TypeError("fn is not a function");
-	fn = fn(); // initialization function
-	if (typeof fn !== "function")
-		throw new TypeError("fn is not a function");
-	return fn;
+	const benchObject = fn(); // initialization function
+	if (typeof benchObject.measuringFunction !== "function")
+		throw new TypeError("measuringFunction is not a function");
+	if (benchObject.cleanupFunction && typeof benchObject.cleanupFunction !== "function")
+		throw new TypeError("cleanupFunction is not a function");
+	return benchObject;
 };
+
+
 app.post("/benchmark/sync", (request, response) => {
 	try {
-		const fn = makeFunction(request.body.fn);
-		const opsPerSec = benchmarkSync(fn);
-		response.sendJson(200, { "ops/sec": opsPerSec });
+		const benchObject = makeBenchObject(request.body.fn);
+		const benchResult = benchmarkSync(benchObject);
+		response.sendJson(200, benchResult);
 	} catch (error) {
 		return response.sendError(409, error);
 	}

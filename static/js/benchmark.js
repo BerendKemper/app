@@ -9,36 +9,93 @@ import {
 	fn_forIn_array,
 	fn_for_array,
 	fn_while_array,
-
+	fn_queue_with_nextWrapper,
+	fn_queue_no_nextWrapper,
 } from "../mod/benchmark.js";
 import { CallbackQueue } from "../mod/callback-queue.js";
 
 
 const benchmarkFunction = function load() {
-	const isFunctionWithInit = func => {
-		if (typeof func !== "function")
+	const isFunctionWithInit = fn => {
+		if (typeof fn !== "function")
 			throw new TypeError("fn must be a function");
-		func = func();
-		if (typeof func !== "function")
-			throw new TypeError("fn must be a function");
+		const benchObject = fn();
+		if (typeof benchObject.measuringFunction !== "function")
+			throw new TypeError("measuringFunction must be a function");
+		if (benchObject.cleanupFunction && typeof benchObject.cleanupFunction !== "function")
+			throw new TypeError("cleanupFunction must be a function");
+		return benchObject;
 	};
 	return {
 		sync(fn, callback) {
-			isFunctionWithInit(fn);
-			fn()();
+			const benchObject = isFunctionWithInit(fn);
+			benchObject.measuringFunction();
+			if (benchObject.cleanupFunction) benchObject.cleanupFunction();
+			benchObject.measuringFunction = null;
+			benchObject.cleanupFunction = null;
 			api.post("/benchmark/sync", { fn: fn.toString() }, callback);
 		},
-		async(fn, callback) {
-			isFunctionWithInit(fn);
-			fn()(() => {
-				api.post("/benchmark/async", { fn: fn.toString() }, callback);
-			});
-		}
+		// async(fn, callback) {
+		// 	isFunctionWithInit(fn);
+		// 	fn()(() => {
+		// 		api.post("/benchmark/async", { fn: fn.toString() }, callback);
+		// 	});
+		// }
 	};
 }();
 const callbackQueue = new CallbackQueue();
 
-//*
+
+
+callbackQueue.push(next => {
+	benchmarkFunction.sync(fn_queue_with_nextWrapper, data => {
+		console.log("fn_queue_with_nextWrapper:", data);
+		next();
+	});
+});
+callbackQueue.push(next => {
+	benchmarkFunction.sync(fn_queue_with_nextWrapper, data => {
+		console.log("fn_queue_with_nextWrapper:", data);
+		next();
+	});
+});
+callbackQueue.push(next => {
+	benchmarkFunction.sync(fn_queue_no_nextWrapper, data => {
+		console.log("fn_queue_no_nextWrapper:", data);
+		next();
+	});
+});
+callbackQueue.push(next => {
+	benchmarkFunction.sync(fn_queue_no_nextWrapper, data => {
+		console.log("fn_queue_no_nextWrapper:", data);
+		next();
+	});
+});
+callbackQueue.push(next => {
+	benchmarkFunction.sync(fn_queue_with_nextWrapper, data => {
+		console.log("fn_queue_with_nextWrapper:", data);
+		next();
+	});
+});
+callbackQueue.push(next => {
+	benchmarkFunction.sync(fn_queue_with_nextWrapper, data => {
+		console.log("fn_queue_with_nextWrapper:", data);
+		next();
+	});
+}); callbackQueue.push(next => {
+	benchmarkFunction.sync(fn_queue_no_nextWrapper, data => {
+		console.log("fn_queue_no_nextWrapper:", data);
+		next();
+	});
+});
+callbackQueue.push(next => {
+	benchmarkFunction.sync(fn_queue_no_nextWrapper, data => {
+		console.log("fn_queue_no_nextWrapper:", data);
+		next();
+	});
+});
+
+/*
 callbackQueue.push(callback => {
 	benchmarkFunction.sync(fn_forOf_array, data => {
 		console.log("fn_forOf_array ops/sec:", data["ops/sec"]);
@@ -46,7 +103,6 @@ callbackQueue.push(callback => {
 	});
 });
 
-/*
 callbackQueue.push(callback => {
 	benchmarkFunction.sync(fn_forIn_array, data => {
 		console.log("fn_forIn_array ops/sec:", data["ops/sec"]);
@@ -97,9 +153,9 @@ callbackQueue.push(callback => {
 //*/
 
 
-callbackQueue.push(callback => {
+callbackQueue.push(next => {
 	api.get("/apis", apis => {
 		console.log(apis);
-		callback();
+		next();
 	});
 });
