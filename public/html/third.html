@@ -1,0 +1,52 @@
+<script>
+    console.log("message from second.html");
+
+
+
+
+    let getLargeSingle = () => {
+        let i = 3000;
+        let getLargeSingle = () => {
+            if (--i === 0)
+                return console.log("done");
+            fetch("/public/html/large.html").then(getLargeSingle);
+        };
+        getLargeSingle();
+    };
+
+
+
+
+    let getLargeMulti = () => {
+        let i;
+        const done = () => {
+            if (--i === 0)
+                console.log("done");
+        };
+        for (i = 0; i < 101; i++)
+            fetch("/public/html/large.html").then(done);
+    };
+
+
+
+
+    let getLargeMultiAwait = () => {
+        let c = 50;
+        let done1 = () => {
+            if (--c === 0)
+                return console.log("done");
+            console.log("running:", c);
+            getLargeMulti();
+        };
+        let getLargeMulti = () => {
+            let i;
+            const done2 = () => {
+                if (--i === 0)
+                    setTimeout(done1, 1000);
+            };
+            for (i = 0; i < 101; i++)
+                fetch("/public/html/large.html").then(done2);
+        };
+        getLargeMulti();
+    };
+</script>
