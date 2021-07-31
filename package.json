@@ -21,7 +21,7 @@
     },
     "homepage": "https://github.com/BerendKemper/app#readme",
     "dependencies": {
-        "emperjs": "^1.x",
+        "emperjs": "^1.0.1",
         "file-operator": "^1.x",
         "filestream-logger": "^2.x",
         "indent-model": "^1.x",

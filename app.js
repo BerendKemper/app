@@ -72,7 +72,7 @@ App.Socket;
 App.logger.log = logger.log;
 App.logger.error = logger.error;
 const app = new App();
-app
+// const app2 = new app(); // this will result in an Error. You could make a second app by makeing a second App2 = require("emperjs")("http"). Or even better write a second node js app
 
 new FileOperator("./apis.json").$read(true).$onReady(apis => {
     app.loadApiRegister(apis);
