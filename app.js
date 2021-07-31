@@ -5,7 +5,7 @@ const TaskClock = require("task-clock");
 const IndentModel = require("indent-model");
 const LocaleTimezoneDate = require("locale-timezone-date");
 const FilestreamLogger = require("filestream-logger");
-const App = require("emperjs");
+const App = require("emperjs")("http");
 const FileOperator = require("file-operator");
 
 // github modules
@@ -14,6 +14,7 @@ const FileOperator = require("file-operator");
 // internal modules
 const data_01 = require("./lib/data");
 const { benchmarkSync } = require("./lib/benchmark");
+const response = require("emperjs/lib/response");
 
 
 ///////////////////////////////////////////////////////////////
@@ -70,13 +71,13 @@ App.Socket;
 
 App.logger.log = logger.log;
 App.logger.error = logger.error;
-const app = new App("http");
+const app = new App();
+app
 
 new FileOperator("./apis.json").$read(true).$onReady(apis => {
     app.loadApiRegister(apis);
     console.log("Registered Api endpoints:", app.apis);
     app.listen();
-
 });
 
 app.get("/favicon.ico", (request, response) => {

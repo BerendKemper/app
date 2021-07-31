@@ -1,6 +1,5 @@
 "use strict";
 import { api } from "../mod/api.js";
-
 const testAnApi = () => {
     api.get("/artists", artists => {
         console.log(artists);
@@ -40,5 +39,5 @@ let getLargeMultiInterval = () => {
     };
     getLargeMulti();
 };
-getLargeMulti();
+// getLargeMulti();
 // getLargeMultiInterval();
