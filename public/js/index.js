@@ -9,7 +9,7 @@ const testAnApi = () => {
         });
     });
 };
-let getLargeMulti = () => {
+window.getLargeMulti = () => {
     const timeStart = performance.now();
     let i;
     const done = () => {
@@ -19,7 +19,7 @@ let getLargeMulti = () => {
     for (i = 0; i < 1000; i++)
         fetch("/public/html/large.html?c=" + i).then(done);
 };
-let getLargeMultiInterval = () => {
+window.getLargeMultiInterval = () => {
     let c = 10;
     let done1 = () => {
         if (--c === 0)

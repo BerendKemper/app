@@ -73,6 +73,9 @@ App.logger.log = logger.log;
 App.logger.error = logger.error;
 const app = new App();
 // const app2 = new app(); // this will result in an Error. You could make a second app by makeing a second App2 = require("emperjs")("http"). Or even better write a second node js app
+console.log("app instanceof http.Server?", app instanceof require("http").Server);
+console.log("http.Server property requestTimeout:", app.requestTimeout);
+
 
 new FileOperator("./apis.json").$read(true).$onReady(apis => {
     app.loadApiRegister(apis);
