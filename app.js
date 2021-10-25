@@ -30,6 +30,13 @@ const formatter = (data, callback) => {
 const logger = {};
 logger.log = new FilestreamLogger("log", { dir: "loggers", name: new LocaleTimezoneDate().yyyymmdd(), formatter });
 logger.error = new FilestreamLogger("error", { dir: "loggers", name: new LocaleTimezoneDate().yyyymmdd(), formatter, extend: [logger.log] });
+logger.debug = new FilestreamLogger("debug", {
+    dir: "loggers", name: new LocaleTimezoneDate().yyyymmdd(), formatter: (data, callback) => {
+        const logString = tabs5_4.tabify(...data);
+        callback(logString);
+        console.log(logString);
+    }
+});
 // console.log("loggers:", logger);
 
 class LoggerClock extends TaskClock {
@@ -74,6 +81,7 @@ App.mimetypes;
 
 App.logger.log = logger.log;
 App.logger.error = logger.error;
+App.logger.debug = logger.debug;
 const app = new App();
 // const app2 = new app(); // this will result in an Error. You could make a second app by makeing a second App2 = require("emperjs")("http"). Or even better write a second node js app
 console.log("app instanceof http.Server?", app instanceof require("http").Server);
@@ -81,9 +89,10 @@ console.log("http.Server property requestTimeout:", app.requestTimeout);
 
 
 new FileOperator("./apis.json").$read(true).$onReady(apis => {
-    app.loadApiRegister(apis);
-    console.log("Registered Api endpoints:", app.apis);
-    app.listen(null);
+    app.loadApiRegister(apis).destroyUnusedRecords().listen(null, function () {
+        console.log(this.apis);
+        console.log(`Listening on: ${this.url}`);
+    });
 });
 
 app.get("/favicon.ico", (request, response) => {
@@ -125,6 +134,16 @@ app.get("/artists/:id/albums", (request, response) => {
     response.sendJson(200, albums);
 });
 
+app.get("/socket", (request, response) => {
+    console.log(!!request, !!response);
+    console.log(request.upgrade);
+    // request.socket.write(Buffer.from("mongol"));
+}, false);
+
+app.post("/body", (request, response) => {
+    console.log(request.body)
+    response.sendJson(200, request.body);
+});
 
 const makeBenchObject = fn => {
     if (!fn)
@@ -160,7 +179,9 @@ app.post("/benchmark/async", (request, response) => {
     }
 });
 //*/
-
+function safeExit() {
+    process.exit();
+}
 process.on("SIGINT", () => {
     logger.error("Node JS is now shutting down due to pressing ctrl + c");
     FileOperator.saveAndExitAll({
@@ -169,4 +190,5 @@ process.on("SIGINT", () => {
             FilestreamLogger.destroyAll(() => process.exit());
         }
     });
+    setTimeout(safeExit, 2000);
 });

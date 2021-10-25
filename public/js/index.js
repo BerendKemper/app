@@ -41,3 +41,7 @@ window.getLargeMultiInterval = () => {
 };
 // getLargeMulti();
 // getLargeMultiInterval();
+api.post("/body", {
+    noob: 1,
+    mongol: "aap"
+}, console.log);
