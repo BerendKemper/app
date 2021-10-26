@@ -18,11 +18,16 @@
     }
     socket.addEventListener("open", function (event) {
         closed = false;
-        socket.send("");
-        socket.send("abcdefghijklmnopqrstuvwxyz");
-        // socket.send(0);
-        socket.send(Int8Array([97, 98]));
         console.log("open", event);
+        socket.send("");
+        setTimeout(() => {
+            socket.send("abcdefghijklmnopqrstuvwxyz");
+            setTimeout(() => {
+                // socket.send("test");
+            }, 100)
+        }, 100);
+        // socket.send(0);
+        // socket.send(new Int8Array([97, 98]));
         // mongol(socket);
     });
     socket.addEventListener("message", function (event) {
