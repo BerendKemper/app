@@ -102,8 +102,8 @@ app.get("/favicon.ico", (request, response) => {
 app.get("/", (request, response) => {
     response.sendFile("/public/html/index.html", false)
         .sendFile("/public/html/second.html", false)
-        .sendFile("/public/html/third.html", false)
-        .sendFile("/public/html/large.html");
+        .sendFile("/public/html/third.html");
+    // .sendFile("/public/html/large.html");
 });
 app.get("/myBenchmarks", (request, response) => {
     response.sendFile("/public/html/benchmark.html");
