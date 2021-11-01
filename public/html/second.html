@@ -18,11 +18,21 @@
     }
     socket.addEventListener("open", function (event) {
         closed = false;
+        console.log("open", event);
         socket.send("");
-        socket.send("abcdefghijklmnopqrstuvwxyz");
+        setTimeout(() => {
+            socket.send("abcdefghijklmnopqrstuvwxyz");
+            setTimeout(() => {
+                // socket.send("test");
+            }, 100)
+        }, 100);
         // socket.send(0);
+<<<<<<< HEAD
         // socket.send(Int8Array([97, 98]));
         console.log("open", event);
+=======
+        // socket.send(new Int8Array([97, 98]));
+>>>>>>> 49082f72fe970ac4948d10cb2e8afc0e475e453c
         // mongol(socket);
     });
     socket.addEventListener("message", function (event) {
