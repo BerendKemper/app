@@ -143,7 +143,7 @@ process.on("SIGINT", () => {
     FileOperator.saveAndExitAll({
         log: logger.log,
         callback() {
-            FilestreamLogger.destroyAll(() => process.exit());
+            FilestreamLogger.destroyAll(safeExit);
         }
     });
     setTimeout(safeExit, 2000);
