@@ -39,11 +39,12 @@ class Logger extends TaskClock {
         this.log = new FilestreamLogger("log", { dir: "loggers", name: yyyymmdd, formatter: this.formatter });
         this.error = new FilestreamLogger("error", { dir: "loggers", name: yyyymmdd, formatter: this.formatter, extend: [this.log] });
         this.debug = new FilestreamLogger("debug", { dir: "loggers", name: yyyymmdd, formatter: this.debugFormat });
+        this.start();
     }
     task(now, tick) {
         const yyyymmdd = now.yyyymmdd();
-        logger.log.setName(yyyymmdd);
-        logger.error.setName(yyyymmdd);
+        this.log.setName(yyyymmdd);
+        this.error.setName(yyyymmdd);
     }
     get DateModel() {
         return LocaleTimezoneDate;
