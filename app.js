@@ -20,39 +20,36 @@ const response = require("emperjs/lib/response");
 ///////////////////////////////////////////////////////////////
 
 const tabs5_4 = new IndentModel({ tabSize: 5, smallestSpace: 4 });
-const formatter = (data, callback) => {
-    const isoStr = new LocaleTimezoneDate().toLocaleISOString();
-    const logString = tabs5_4.tabify(isoStr, ...data);
-    callback(logString);
-    console.log(logString);
-};
 
-const logger = {};
-logger.log = new FilestreamLogger("log", { dir: "loggers", name: new LocaleTimezoneDate().yyyymmdd(), formatter });
-logger.error = new FilestreamLogger("error", { dir: "loggers", name: new LocaleTimezoneDate().yyyymmdd(), formatter, extend: [logger.log] });
-logger.debug = new FilestreamLogger("debug", {
-    dir: "loggers", name: new LocaleTimezoneDate().yyyymmdd(), formatter: (data, callback) => {
+class Logger extends TaskClock {
+    formatter(data, callback) {
+        const isoStr = new LocaleTimezoneDate().toLocaleISOString();
+        const logString = tabs5_4.tabify(isoStr, ...data);
+        callback(logString);
+        console.log(logString);
+    }
+    debugFormat(data, callback) {
         const logString = tabs5_4.tabify(...data);
         callback(logString);
         console.log(logString);
     }
-});
-// console.log("loggers:", logger);
-
-class LoggerClock extends TaskClock {
     constructor() {
-        super({ start: new Date(new Date().setHours(0, 0, 0, 0)), interval: { h: 24 } });
-    };
+        super({ start: new Date(new Date().setHours(0, 0, 0, 0)), interval: { h: 24 }, autoStart: false });
+        const yyyymmdd = new LocaleTimezoneDate().yyyymmdd()
+        this.log = new FilestreamLogger("log", { dir: "loggers", name: yyyymmdd, formatter: this.formatter });
+        this.error = new FilestreamLogger("error", { dir: "loggers", name: yyyymmdd, formatter: this.formatter, extend: [this.log] });
+        this.debug = new FilestreamLogger("debug", { dir: "loggers", name: yyyymmdd, formatter: this.debugFormat });
+    }
     task(now, tick) {
         const yyyymmdd = now.yyyymmdd();
         logger.log.setName(yyyymmdd);
         logger.error.setName(yyyymmdd);
-    };
+    }
     get DateModel() {
         return LocaleTimezoneDate;
-    };
+    }
 };
-const clock = new LoggerClock();
+const logger = new Logger();
 
 
 
