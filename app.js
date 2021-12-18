@@ -89,6 +89,11 @@ app.get("/artists/:id/albums", (request, response) => {
     response.sendJson(200, albums);
 });
 
+app.get("/socket", (request, response) => {
+    console.log(!!request, !!response);
+    console.log(request.upgrade);
+    // request.socket.write(Buffer.from("mongol"));
+});
 
 app.post("/body", (request, response) => {
     console.log(request.body)
