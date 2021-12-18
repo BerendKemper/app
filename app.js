@@ -43,7 +43,6 @@ const app = new App();
 console.log("app instanceof http.Server?", app instanceof require("http").Server);
 console.log("http.Server property requestTimeout:", app.requestTimeout);
 
-
 new FileOperator("./apis.json").$read(true).$onReady(apis => {
     app.loadApiRegister(apis).destroyUnusedRecords().listen(null, function () {
         console.log(this.apis);
@@ -52,20 +51,20 @@ new FileOperator("./apis.json").$read(true).$onReady(apis => {
 });
 
 app.get("/favicon.ico", (request, response) => {
-    response.sendFile("/public/icon/favicon.ico");
+    response.sendFile("./public/icon/favicon.ico");
 });
 
 app.get("/", (request, response) => {
-    response.sendFile("/public/html/index.html", false)
-        .sendFile("/public/html/second.html", false)
-        .sendFile("/public/html/third.html");
-    // .sendFile("/public/html/large.html");
+    response.sendFile("./public/html/index.html")
+        .sendFile("./public/html/second.html")
+        .sendFile("./public/html/third.html")
+        .sendFile("./public/txt/large.txt");
 });
 app.get("/myBenchmarks", (request, response) => {
-    response.sendFile("/public/html/benchmark.html");
+    response.sendFile("./public/html/benchmark.html");
 });
 app.get("/public/:dir/:file", (request, response) => {
-    response.sendFile(`/public/${request.params.dir}/${request.params.file}`);
+    response.sendFile(`./public/${request.params.dir}/${request.params.file}`);
 });
 
 app.get("/apis", (request, response) => {
