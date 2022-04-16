@@ -31,3 +31,4 @@ socket.addEventListener("close", function (event) {
 });
 socket.addEventListener("error", function (event) {
     console.log("error", event);
+});
