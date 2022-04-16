@@ -45,7 +45,7 @@ console.log("http.Server property requestTimeout:", app.requestTimeout);
 
 new FileOperator("./apis.json").$read(true).$onReady(apis => {
     app.loadApiRegister(apis).destroyUnusedRecords().listen(null, function () {
-        console.log(this.apis);
+        console.log("Registered Api endpoints:", this.apis);
         console.log(`Listening on: ${this.url}`);
     });
 });
