@@ -2,5 +2,6 @@
 /node_modules*
 package-lock.json
 apis.json
+/apis
 *.rest
 .vscode

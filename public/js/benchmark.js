@@ -9,8 +9,12 @@ import {
     fn_forIn_array,
     fn_for_array,
     fn_while_array,
-    fn_queue_with_nextWrapper,
-    fn_queue_no_nextWrapper,
+    fn_cbqueue_old,
+    fn_cbqueue_new,
+    fn_args_spread,
+    fn_args_spread2,
+    fn_invoke,
+    fn_invoke_call,
 } from "../dev/benchmark.js";
 import { CallbackQueue } from "../mod/callback-queue.js";
 
@@ -47,54 +51,107 @@ const callbackQueue = new CallbackQueue();
 
 
 
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_queue_with_nextWrapper, data => {
-        console.log("fn_queue_with_nextWrapper:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_queue_with_nextWrapper, data => {
-        console.log("fn_queue_with_nextWrapper:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_queue_no_nextWrapper, data => {
-        console.log("fn_queue_no_nextWrapper:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_queue_no_nextWrapper, data => {
-        console.log("fn_queue_no_nextWrapper:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_queue_with_nextWrapper, data => {
-        console.log("fn_queue_with_nextWrapper:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_queue_with_nextWrapper, data => {
-        console.log("fn_queue_with_nextWrapper:", data);
-        next();
-    });
-}); callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_queue_no_nextWrapper, data => {
-        console.log("fn_queue_no_nextWrapper:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_queue_no_nextWrapper, data => {
-        console.log("fn_queue_no_nextWrapper:", data);
-        next();
-    });
-});
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_cbqueue_old, data => {
+//         console.log("fn_cbqueue_old:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_cbqueue_old, data => {
+//         console.log("fn_cbqueue_old:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_cbqueue_new, data => {
+//         console.log("fn_cbqueue_new:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_cbqueue_new, data => {
+//         console.log("fn_cbqueue_new:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_cbqueue_old, data => {
+//         console.log("fn_cbqueue_old:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_cbqueue_old, data => {
+//         console.log("fn_cbqueue_old:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_cbqueue_new, data => {
+//         console.log("fn_cbqueue_new:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_cbqueue_new, data => {
+//         console.log("fn_cbqueue_new:", data);
+//         next();
+//     });
+// });
 
+
+///////////////////////////////
+
+
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_invoke, data => {
+        console.log("fn_invoke:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_invoke_call, data => {
+        console.log("fn_invoke_call:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_invoke, data => {
+        console.log("fn_invoke:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_invoke_call, data => {
+        console.log("fn_invoke_call:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_invoke, data => {
+        console.log("fn_invoke:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_invoke_call, data => {
+        console.log("fn_invoke_call:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_invoke, data => {
+        console.log("fn_invoke:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_invoke_call, data => {
+        console.log("fn_invoke_call:", data);
+        next();
+    });
+});
 /*
 callbackQueue.push(callback => {
     benchmarkFunction.sync(fn_forOf_array, data => {

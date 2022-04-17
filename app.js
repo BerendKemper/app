@@ -4,6 +4,8 @@
 const FilestreamLogger = require("filestream-logger");
 const App = require("emperjs")("http");
 const FileOperator = require("file-operator");
+const TaskClock = require("task-clock");
+const LocaleTimezoneDate = require("locale-timezone-date");
 
 // internal modules
 const data_01 = require("./lib/data");
@@ -43,12 +45,58 @@ const app = new App();
 console.log("app instanceof http.Server?", app instanceof require("http").Server);
 console.log("http.Server property requestTimeout:", app.requestTimeout);
 
-new FileOperator("./apis.json").$read(true).$onReady(apis => {
-    app.loadApiRegister(apis).destroyUnusedRecords().listen(null, function () {
-        console.log("Registered Api endpoints:", this.apis);
-        console.log(`Listening on: ${this.url}`);
-    });
+class SchedulerApiRecorder extends TaskClock {
+    #onReady = null;
+    constructor(options) {
+        (options = options || {}).autoStart = false;
+        super(options);
+        this.#onReady = options.onReady;
+        this.start();
+        // The option autoStart must be false the start method be invoked after super becuase
+        //    1. The constructor of TaskClock immediately invokes the task method.
+        //    2. The result is that the constructor of SchedulerApiRecorder has not finished.
+        //    3. The consequence of the constructor not having finished is that the private methods are inaccessible.
+        //
+        // The super constructor of SchedulerApiRecorder must finish constructing before accessing private properties.
+    }
+    task(now, tick) {
+        const newRegister = new FileOperator(`./apis/nested1/nested2/${now.yyyymmdd()}.json`);
+        if (tick === 1)
+            return newRegister.$read(true).$onReady(this.#onReadFirstRegister, this);
+        app.apis.$write(true).$onReady(this.#onWrittenOldRegister, newRegister);
+    }
+    #onReadFirstRegister(newRegister, self) {
+        app.loadApiRegister(newRegister).destroyUnusedRecords();
+        console.log("Registered Api endpoints:", app.apis);
+        if (typeof self.#onReady === "function")
+            self.#onReady();
+    }
+    #onWrittenOldRegister(oldRegister, newRegister) {
+        app.loadApiRegister(newRegister).destroyUnusedRecords();
+        oldRegister.$close();
+    }
+    get DateModel() {
+        return LocaleTimezoneDate;
+    }
+}
+
+new SchedulerApiRecorder({
+    start: new LocaleTimezoneDate().startOfDate({ ms: false }),
+    interval: { h: 24 },
+    onReady: function () {
+        app.listen(null, function () {
+            console.log(`Listening on: ${this.url}`);
+        });
+    }
 });
+
+
+// new FileOperator("./apis.json").$read(true).$onReady(apis => {
+//     app.loadApiRegister(apis).destroyUnusedRecords().listen(null, function () {
+//         console.log("Registered Api endpoints:", this.apis);
+//         console.log(`Listening on: ${this.url}`);
+//     });
+// });
 
 app.get("/favicon.ico", (request, response) => {
     response.sendFile("./public/icon/favicon.ico");
