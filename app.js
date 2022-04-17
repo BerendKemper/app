@@ -60,7 +60,7 @@ class SchedulerApiRecorder extends TaskClock {
         // The super constructor of SchedulerApiRecorder must finish constructing before accessing private properties.
     }
     task(now, tick) {
-        const newRegister = new FileOperator(`./apis/nested1/nested2/${now.yyyymmdd()}.json`);
+        const newRegister = new FileOperator(`./apis/${now.yyyymmdd()}.json`);
         if (tick === 1)
             return newRegister.$read(true).$onReady(this.#onReadFirstRegister, this);
         app.apis.$write(true).$onReady(this.#onWrittenOldRegister, newRegister);
