@@ -90,14 +90,6 @@ new SchedulerApiRecorder({
     }
 });
 
-
-// new FileOperator("./apis.json").$read(true).$onReady(apis => {
-//     app.loadApiRegister(apis).destroyUnusedRecords().listen(null, function () {
-//         console.log("Registered Api endpoints:", this.apis);
-//         console.log(`Listening on: ${this.url}`);
-//     });
-// });
-
 app.get("/favicon.ico", (request, response) => {
     response.sendFile("./public/icon/favicon.ico");
 });
