@@ -280,3 +280,24 @@ export const fn_invoke_call = () => {
         }
     };
 };
+
+export const fn_buffer_from = () => {
+    return {
+        measuringFunction() {
+            typeof Buffer !== "undefined" && Buffer.from("abcdefghijklmnopqrstuvwxyz");
+        },
+        cleanupFunction() {
+            console.log(typeof Buffer !== "undefined", typeof Buffer !== "undefined" && Buffer);
+        }
+    };
+};
+export const fn_uint8array_from = () => {
+    function charCode(c) {
+        return c.charCodeAt()
+    }
+    return {
+        measuringFunction() {
+            typeof Buffer !== "undefined" && Uint8Array.from("abcdefghijklmnopqrstuvwxyz", charCode);
+        }
+    };
+};

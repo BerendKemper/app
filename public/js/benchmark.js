@@ -15,6 +15,8 @@ import {
     fn_args_spread2,
     fn_invoke,
     fn_invoke_call,
+    fn_buffer_from,
+    fn_uint8array_from
 } from "../dev/benchmark.js";
 import { CallbackQueue } from "../mod/callback-queue.js";
 
@@ -104,54 +106,69 @@ const callbackQueue = new CallbackQueue();
 ///////////////////////////////
 
 
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_invoke, data => {
+//         console.log("fn_invoke:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_invoke_call, data => {
+//         console.log("fn_invoke_call:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_invoke, data => {
+//         console.log("fn_invoke:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_invoke_call, data => {
+//         console.log("fn_invoke_call:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_invoke, data => {
+//         console.log("fn_invoke:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_invoke_call, data => {
+//         console.log("fn_invoke_call:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_invoke, data => {
+//         console.log("fn_invoke:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_invoke_call, data => {
+//         console.log("fn_invoke_call:", data);
+//         next();
+//     });
+// });
+
 callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_invoke, data => {
-        console.log("fn_invoke:", data);
+    benchmarkFunction.sync(fn_buffer_from, data => {
+        console.log("fn_buffer_from:", data);
         next();
     });
 });
 callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_invoke_call, data => {
-        console.log("fn_invoke_call:", data);
+    benchmarkFunction.sync(fn_uint8array_from, data => {
+        console.log("fn_uint8array_from:", data);
         next();
     });
 });
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_invoke, data => {
-        console.log("fn_invoke:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_invoke_call, data => {
-        console.log("fn_invoke_call:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_invoke, data => {
-        console.log("fn_invoke:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_invoke_call, data => {
-        console.log("fn_invoke_call:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_invoke, data => {
-        console.log("fn_invoke:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_invoke_call, data => {
-        console.log("fn_invoke_call:", data);
-        next();
-    });
-});
+fn_buffer_from
+fn_uint8array_from
 /*
 callbackQueue.push(callback => {
     benchmarkFunction.sync(fn_forOf_array, data => {
