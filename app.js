@@ -96,7 +96,7 @@ new SchedulerApiRecorder({
 
 app.get("/favicon.ico", (request, response) => {
     response.sendFile("./public/icon/favicon.ico");
-});
+}, { record: false });
 
 app.get("/", (request, response) => {
     response.sendFile("./public/html/index.html")
