@@ -90,6 +90,10 @@ new SchedulerApiRecorder({
     }
 });
 
+//////////////////////////////////
+//    File system endpoints     //
+//////////////////////////////////
+
 app.get("/favicon.ico", (request, response) => {
     response.sendFile("./public/icon/favicon.ico");
 });
@@ -100,40 +104,57 @@ app.get("/", (request, response) => {
         .sendFile("./public/html/third.html")
         .sendFile("./public/txt/large.txt");
 });
+
 app.get("/myBenchmarks", (request, response) => {
     response.sendFile("./public/html/benchmark.html");
 });
+
 app.get("/public/:dir/:file", (request, response) => {
     response.sendFile(`./public/${request.params.dir}/${request.params.file}`);
 });
 
+//////////////////////////////////
+//      Some REST endpoints     //
+//////////////////////////////////
+
 app.get("/apis", (request, response) => {
     response.sendJson(200, app.apis);
-});
+}, { record: false });
+
 app.get("/artists", (request, response) => {
     const users = data_01.artists.data;
     response.sendJson(200, users);
-});
+}, { record: false });
+
 app.get("/artists/:id", (request, response) => {
     const artist = data_01.artists[request.params.id];
     if (!artist)
         return response.sendError(404, new Error(`The Artist "${request.params.id}" does not exist`));
     const user = artist.data;
     response.sendJson(200, user);
-});
+}, { record: false });
+
 app.get("/artists/:id/albums", (request, response) => {
     const artist = data_01.artists[request.params.id];
     if (!artist)
         return response.sendError(404, new Error(`The Artist "${request.params.id}" does not exist`));
     const albums = artist.albums;
     response.sendJson(200, albums);
-});
+}, { record: false });
+
+//////////////////////////////////
+//       Socket endpoint        //
+//////////////////////////////////
 
 app.get("/socket", (request, response) => {
     console.log(!!request, !!response);
     console.log(request.upgrade);
     // request.socket.write(Buffer.from("mongol"));
-});
+}, { record: false });
+
+//////////////////////////////////
+//        test endpoint         //
+//////////////////////////////////
 
 app.post("/body", (request, response) => {
     console.log(request.body)

@@ -22,7 +22,7 @@
     "homepage": "https://github.com/BerendKemper/app#readme",
     "dependencies": {
         "ca11back-queue": "^1.4.1",
-        "emperjs": "^1.1.6",
+        "emperjs": "^1.1.9",
         "file-operator": "^1.1.0",
         "filestream-logger": "^2.2.4",
         "indent-model": "^1.0.5",
