@@ -29,18 +29,16 @@ console.log(App.IncomingMessage.dataParsers);
 
 
 ///////////////////////////////////////////////////////////////
-App.IncomingMessage;
-App.IncomingMessage.bodyParsers
-App.ServerResponse;
-App.Socket;
-App.mimetypes;
 
 
 App.logger.log = logger.log;
 App.logger.error = logger.error;
 App.logger.debug = logger.debug;
 const app = new App();
+
 // const app2 = new app(); // this will result in an Error. You could make a second app by makeing a second App2 = require("emperjs")("http"). Or even better write a second node js app
+
+
 console.log("app instanceof http.Server?", app instanceof require("http").Server);
 console.log("http.Server property requestTimeout:", app.requestTimeout);
 
@@ -61,24 +59,6 @@ new SchedulerApiRecorder(app, {
 //////////////////////////////////
 
 
-
-const https = require("https");
-
-app.get("/contextual/:domain/:path", (request, response) => {
-    https.get("https://dev-era-184513.ew.r.appspot.com/?domain=" + request.params.domain + "&path=" + request.params.path, (res) => {
-        const { statusCode } = res;
-        if (statusCode !== 200) {
-            res.resume();
-            response.sendError(statusCode, new Error("monkey"));
-        }
-        res.setEncoding("utf8");
-        let rawData = '';
-        res.on("data", chunk => { rawData += chunk; });
-        res.on("end", () => {
-            response.send(Buffer.from(rawData));
-        });
-    });
-}, { report: false });
 
 app.get("/favicon.ico", (request, response) => {
     response.sendFile("./public/icon/favicon.ico");
