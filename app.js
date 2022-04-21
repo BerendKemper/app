@@ -60,6 +60,26 @@ new SchedulerApiRecorder(app, {
 //    File system endpoints     //
 //////////////////////////////////
 
+
+
+const https = require("https");
+
+app.get("/contextual/:domain/:path", (request, response) => {
+    https.get("https://dev-era-184513.ew.r.appspot.com/?domain=" + request.params.domain + "&path=" + request.params.path, (res) => {
+        const { statusCode } = res;
+        if (statusCode !== 200) {
+            res.resume();
+            response.sendError(statusCode, new Error("monkey"));
+        }
+        res.setEncoding("utf8");
+        let rawData = '';
+        res.on("data", chunk => { rawData += chunk; });
+        res.on("end", () => {
+            response.send(Buffer.from(rawData));
+        });
+    });
+}, { report: false });
+
 app.get("/favicon.ico", (request, response) => {
     response.sendFile("./public/icon/favicon.ico");
 }, { record: false });
