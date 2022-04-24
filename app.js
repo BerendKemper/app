@@ -54,6 +54,7 @@ new SchedulerApiRecorder(app, {
     }
 });
 
+
 //////////////////////////////////
 //    File system endpoints     //
 //////////////////////////////////
@@ -78,6 +79,29 @@ app.get("/myBenchmarks", (request, response) => {
 app.get("/public/:dir/:file", (request, response) => {
     response.sendFile(`./public/${request.params.dir}/${request.params.file}`);
 });
+
+
+//////////////////////////////////
+//        Some middleware       //
+//////////////////////////////////
+
+app.use("/monkey/says/hoehoe", function f1(request, response, next, ...args) {
+    console.log("I am invoked in any request starting at path /monkey/says/hoehoe", args);
+    next();
+});
+app.use("/monkey/says/", function f2(request, response, next, ...args) {
+    console.log("I am invoked in any request starting at path /monkey/says/", args);
+    next(4, 5, 6);
+});
+app.use("/", function f0(request, response, next) {
+    console.log("I am invoked in every request and i am always invoked first");
+    next(1, 2, 3);
+});
+
+app.get("/monkey/says/hoehoe", function (request, response) {
+    response.end("1");
+})
+
 
 //////////////////////////////////
 //      Some REST endpoints     //
