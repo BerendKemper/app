@@ -301,3 +301,91 @@ export const fn_uint8array_from = () => {
         }
     };
 };
+
+
+
+export const fn_is_object_tostring = () => {
+    const objProtoToStr = Object.prototype.toString;
+    return {
+        measuringFunction() {
+            objProtoToStr.call({}) === "[object Object]";
+        }
+    };
+};
+export const fn_is_object_typeof = () => {
+    return {
+        measuringFunction() {
+            const obj = {};
+            obj !== null && !Array.isArray(obj) && typeof obj === "object";
+        }
+    };
+};
+export const fn_is_object_typeof_wrap = () => {
+    function isObj(data) {
+        return data !== null && typeof data === "object" && !data instanceof Array;
+    }
+    return {
+        measuringFunction() {
+            isObj({});
+        }
+    };
+};
+
+
+export const fn_for_of_object = () => {
+    function* forOfLoopObject() {
+        for (const key in this)
+            yield this[key];
+    }
+    const obj = {
+        9: "a",
+        8: "b",
+        7: "c",
+        6: "d",
+        5: "e",
+        4: "f",
+        3: "g",
+        2: "h",
+        1: "i",
+        0: "j",
+        [Symbol.iterator]: forOfLoopObject
+    };
+    return {
+        measuringFunction() {
+            for (const value of obj) {
+                value;
+            }
+        }
+    };
+};
+export const fn_for_in_object = () => {
+    const obj = {
+        9: "a",
+        8: "b",
+        7: "c",
+        6: "d",
+        5: "e",
+        4: "f",
+        3: "g",
+        2: "h",
+        1: "i",
+        0: "j",
+    };
+    return {
+        measuringFunction() {
+            for (const key in obj) {
+                obj[key];
+            }
+        }
+    };
+};
+export const fn_for_of_array = () => {
+    const arr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
+    return {
+        measuringFunction() {
+            for (const value of arr) {
+                value;
+            }
+        }
+    };
+};

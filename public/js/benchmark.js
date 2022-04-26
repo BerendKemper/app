@@ -16,7 +16,13 @@ import {
     fn_invoke,
     fn_invoke_call,
     fn_buffer_from,
-    fn_uint8array_from
+    fn_uint8array_from,
+    fn_is_object_tostring,
+    fn_is_object_typeof,
+    fn_is_object_typeof_wrap,
+    fn_for_of_object,
+    fn_for_in_object,
+    fn_for_of_array,
 } from "../dev/benchmark.js";
 import { CallbackQueue } from "../mod/callback-queue.js";
 
@@ -50,6 +56,138 @@ const benchmarkFunction = function load() {
     };
 }();
 const callbackQueue = new CallbackQueue();
+
+
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_for_of_object, data => {
+        console.log("fn_for_of_object:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_for_in_object, data => {
+        console.log("fn_for_in_object:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_for_of_array, data => {
+        console.log("fn_for_of_array:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_for_of_object, data => {
+        console.log("fn_for_of_object:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_for_in_object, data => {
+        console.log("fn_for_in_object:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_for_of_array, data => {
+        console.log("fn_for_of_array:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_for_of_object, data => {
+        console.log("fn_for_of_object:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_for_in_object, data => {
+        console.log("fn_for_in_object:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_for_of_array, data => {
+        console.log("fn_for_of_array:", data);
+        next();
+    });
+});
+
+
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_is_object_tostring, data => {
+//         console.log("fn_is_object_tostring:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_is_object_typeof, data => {
+//         console.log("fn_is_object_typeof:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_is_object_typeof_wrap, data => {
+//         console.log("fn_is_object_typeof_wrap:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_is_object_tostring, data => {
+//         console.log("fn_is_object_tostring:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_is_object_typeof, data => {
+//         console.log("fn_is_object_typeof:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_is_object_typeof_wrap, data => {
+//         console.log("fn_is_object_typeof_wrap:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_is_object_tostring, data => {
+//         console.log("fn_is_object_tostring:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_is_object_typeof, data => {
+//         console.log("fn_is_object_typeof:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_is_object_typeof_wrap, data => {
+//         console.log("fn_is_object_typeof_wrap:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_is_object_tostring, data => {
+//         console.log("fn_is_object_tostring:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_is_object_typeof, data => {
+//         console.log("fn_is_object_typeof:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_is_object_typeof_wrap, data => {
+//         console.log("fn_is_object_typeof_wrap:", data);
+//         next();
+//     });
+// });
+
+
 
 
 
@@ -155,20 +293,18 @@ const callbackQueue = new CallbackQueue();
 //     });
 // });
 
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_buffer_from, data => {
-        console.log("fn_buffer_from:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_uint8array_from, data => {
-        console.log("fn_uint8array_from:", data);
-        next();
-    });
-});
-fn_buffer_from
-fn_uint8array_from
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_buffer_from, data => {
+//         console.log("fn_buffer_from:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_uint8array_from, data => {
+//         console.log("fn_uint8array_from:", data);
+//         next();
+//     });
+// });
 /*
 callbackQueue.push(callback => {
     benchmarkFunction.sync(fn_forOf_array, data => {
