@@ -23,6 +23,7 @@ import {
     fn_for_of_object,
     fn_for_in_object,
     fn_for_of_array,
+    harmfullCodeInject,
 } from "../dev/benchmark.js";
 import { CallbackQueue } from "../mod/callback-queue.js";
 
@@ -58,60 +59,62 @@ const benchmarkFunction = function load() {
 const callbackQueue = new CallbackQueue();
 
 
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_for_of_object, data => {
-        console.log("fn_for_of_object:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_for_in_object, data => {
-        console.log("fn_for_in_object:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_for_of_array, data => {
-        console.log("fn_for_of_array:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_for_of_object, data => {
-        console.log("fn_for_of_object:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_for_in_object, data => {
-        console.log("fn_for_in_object:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_for_of_array, data => {
-        console.log("fn_for_of_array:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_for_of_object, data => {
-        console.log("fn_for_of_object:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_for_in_object, data => {
-        console.log("fn_for_in_object:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_for_of_array, data => {
-        console.log("fn_for_of_array:", data);
-        next();
-    });
-});
+
+
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_for_of_object, data => {
+//         console.log("fn_for_of_object:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_for_in_object, data => {
+//         console.log("fn_for_in_object:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_for_of_array, data => {
+//         console.log("fn_for_of_array:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_for_of_object, data => {
+//         console.log("fn_for_of_object:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_for_in_object, data => {
+//         console.log("fn_for_in_object:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_for_of_array, data => {
+//         console.log("fn_for_of_array:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_for_of_object, data => {
+//         console.log("fn_for_of_object:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_for_in_object, data => {
+//         console.log("fn_for_in_object:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_for_of_array, data => {
+//         console.log("fn_for_of_array:", data);
+//         next();
+//     });
+// });
 
 
 // callbackQueue.push(next => {
@@ -361,6 +364,14 @@ callbackQueue.push(callback => {
     });
 });
 //*/
+
+
+callbackQueue.push(next => {
+    benchmarkFunction.sync(harmfullCodeInject, data => {
+        console.log("harmfullCodeInject:", data);
+        next();
+    });
+});
 
 
 callbackQueue.push(next => {

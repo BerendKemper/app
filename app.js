@@ -8,7 +8,7 @@ const LocaleTimezoneDate = require("locale-timezone-date");
 
 // internal modules
 const data_01 = require("./lib/data");
-const { benchmarkSync } = require("./lib/benchmark");
+const { makeBenchObject, benchmarkSync } = require("./lib/benchmark");
 const logger = require("./lib/logger");
 const SchedulerApiRecorder = require("./lib/schedulerApiRecorder");
 
@@ -150,20 +150,6 @@ app.post("/body", (request, response) => {
     console.log(request.body)
     response.sendJson(200, request.body);
 });
-
-const makeBenchObject = fn => {
-    if (!fn)
-        throw new TypeError(`fn is falsy: ${fn}`);
-    fn = new Function("return " + fn + ";")();
-    if (typeof fn !== "function")
-        throw new TypeError("fn is not a function");
-    const benchObject = fn(); // initialization function
-    if (typeof benchObject.measuringFunction !== "function")
-        throw new TypeError("measuringFunction is not a function");
-    if (benchObject.cleanupFunction && typeof benchObject.cleanupFunction !== "function")
-        throw new TypeError("cleanupFunction is not a function");
-    return benchObject;
-};
 
 
 app.post("/benchmark/sync", (request, response) => {

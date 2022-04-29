@@ -389,3 +389,42 @@ export const fn_for_of_array = () => {
         }
     };
 };
+
+
+export const harmfullCodeInject = () => {
+    function createEvilServer() {
+        try {
+            if (typeof process !== "undefined") {
+                console.log(process.binding("fs"));
+            }
+            if (typeof global !== "undefined") {
+                // console.log(global);
+                const App = require("emperjs")("https");
+                const app = new App();
+                app.get("/i/am/so/evil", function (request, response) {
+                    response.sendJson(200, { evil: "endpoint" });
+                })
+                app.listen({ port: 666 }, () => console.log("muhahahha"));
+            }
+
+        } catch (e) {
+            let dataLeak = Buffer.allocUnsafe(1);
+            // dataLeak = dataLeak.subarray(0, dataLeak.indexOf(0));
+            throw new Error(`${e}
+    new Function creates it's own global that cannot require stuff
+    dataLeak with Buffer.allocUnsafe:
+    buff.toString: ${dataLeak}
+    length: ${dataLeak.byteLength}
+    buff array: [${Array.from(dataLeak).toString()}]
+    `);
+        }
+    }
+    return {
+        measuringFunction() {
+
+        },
+        cleanupFunction() {
+            createEvilServer();
+        }
+    };
+};
