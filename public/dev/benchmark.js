@@ -464,6 +464,25 @@ export const fn_get_pArg = () => {
 
 
 
+export const fn_object_create_null = () => {
+    const ObjectCreate = Object.create;
+    return {
+        measuringFunction() {
+            const obj = ObjectCreate(null);
+        }
+    };
+};
+export const fn_object_create = () => {
+    return {
+        measuringFunction() {
+            const obj = {};
+        }
+    };
+};
+
+
+
+
 export const harmfullCodeInject = () => {
     function createEvilServer() {
         try {

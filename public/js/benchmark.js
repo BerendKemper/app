@@ -30,6 +30,9 @@ import {
     fn_get_kArg,
     fn_get_arg,
     fn_get_pArg,
+    fn_object_create,
+    fn_object_create_null,
+
 } from "../dev/benchmark.js";
 import { CallbackQueue } from "../mod/callback-queue.js";
 
@@ -68,81 +71,124 @@ const callbackQueue = new CallbackQueue();
 
 
 
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_object_create, data => {
+        console.log("fn_object_create:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_object_create_null, data => {
+        console.log("fn_object_create_null:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_object_create, data => {
+        console.log("fn_object_create:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_object_create_null, data => {
+        console.log("fn_object_create_null:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_object_create, data => {
+        console.log("fn_object_create:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_object_create_null, data => {
+        console.log("fn_object_create_null:", data);
+        next();
+    });
+});
 
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_set_kArg, data => {
-        console.log("fn_set_kArg:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_set_arg, data => {
-        console.log("fn_set_arg:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_set_pArg, data => {
-        console.log("fn_set_pArg:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_get_kArg, data => {
-        console.log("fn_get_kArg:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_get_arg, data => {
-        console.log("fn_get_arg:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_get_pArg, data => {
-        console.log("fn_get_pArg:", data);
-        next();
-    });
-});
 
 
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_set_kArg, data => {
-        console.log("fn_set_kArg:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_set_arg, data => {
-        console.log("fn_set_arg:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_set_pArg, data => {
-        console.log("fn_set_pArg:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_get_kArg, data => {
-        console.log("fn_get_kArg:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_get_arg, data => {
-        console.log("fn_get_arg:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_get_pArg, data => {
-        console.log("fn_get_pArg:", data);
-        next();
-    });
-});
+
+
+
+
+
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_set_kArg, data => {
+//         console.log("fn_set_kArg:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_set_arg, data => {
+//         console.log("fn_set_arg:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_set_pArg, data => {
+//         console.log("fn_set_pArg:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_get_kArg, data => {
+//         console.log("fn_get_kArg:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_get_arg, data => {
+//         console.log("fn_get_arg:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_get_pArg, data => {
+//         console.log("fn_get_pArg:", data);
+//         next();
+//     });
+// });
+
+
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_set_kArg, data => {
+//         console.log("fn_set_kArg:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_set_arg, data => {
+//         console.log("fn_set_arg:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_set_pArg, data => {
+//         console.log("fn_set_pArg:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_get_kArg, data => {
+//         console.log("fn_get_kArg:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_get_arg, data => {
+//         console.log("fn_get_arg:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_get_pArg, data => {
+//         console.log("fn_get_pArg:", data);
+//         next();
+//     });
+// });
 
 
 
