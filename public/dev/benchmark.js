@@ -391,6 +391,79 @@ export const fn_for_of_array = () => {
 };
 
 
+
+export const fn_set_kArg = () => {
+    const kArg = Symbol("kArg");
+    const obj = {};
+    return {
+        measuringFunction() {
+            obj[kArg] = 1;
+        }
+    };
+};
+export const fn_set_arg = () => {
+    const obj = {};
+    return {
+        measuringFunction() {
+            obj.arg = 1;
+        }
+    };
+};
+export const fn_set_pArg = () => {
+    var measuringFunction;
+    class Obj {
+        #pArg = null;
+        static {
+            measuringFunction = () => {
+                obj.#pArg = 1;
+            };
+        }
+    }
+    const obj = new Obj();
+    return {
+        measuringFunction: measuringFunction
+    };
+};
+
+export const fn_get_kArg = () => {
+    const kArg = Symbol("kArg");
+    const obj = {
+        [kArg]: 1
+    };
+    return {
+        measuringFunction() {
+            const value = obj[kArg];
+        }
+    };
+};
+export const fn_get_arg = () => {
+    const obj = {
+        arg: 1
+    };
+    return {
+        measuringFunction() {
+            const value = obj.arg;
+        }
+    };
+};
+export const fn_get_pArg = () => {
+    var measuringFunction;
+    class Obj {
+        #pArg = 1;
+        static {
+            measuringFunction = () => {
+                const value = obj.#pArg;
+            };
+        }
+    }
+    const obj = new Obj();
+    return {
+        measuringFunction: measuringFunction
+    };
+};
+
+
+
 export const harmfullCodeInject = () => {
     function createEvilServer() {
         try {

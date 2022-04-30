@@ -24,6 +24,12 @@ import {
     fn_for_in_object,
     fn_for_of_array,
     harmfullCodeInject,
+    fn_set_kArg,
+    fn_set_arg,
+    fn_set_pArg,
+    fn_get_kArg,
+    fn_get_arg,
+    fn_get_pArg,
 } from "../dev/benchmark.js";
 import { CallbackQueue } from "../mod/callback-queue.js";
 
@@ -57,6 +63,88 @@ const benchmarkFunction = function load() {
     };
 }();
 const callbackQueue = new CallbackQueue();
+
+
+
+
+
+
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_set_kArg, data => {
+        console.log("fn_set_kArg:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_set_arg, data => {
+        console.log("fn_set_arg:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_set_pArg, data => {
+        console.log("fn_set_pArg:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_get_kArg, data => {
+        console.log("fn_get_kArg:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_get_arg, data => {
+        console.log("fn_get_arg:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_get_pArg, data => {
+        console.log("fn_get_pArg:", data);
+        next();
+    });
+});
+
+
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_set_kArg, data => {
+        console.log("fn_set_kArg:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_set_arg, data => {
+        console.log("fn_set_arg:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_set_pArg, data => {
+        console.log("fn_set_pArg:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_get_kArg, data => {
+        console.log("fn_get_kArg:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_get_arg, data => {
+        console.log("fn_get_arg:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_get_pArg, data => {
+        console.log("fn_get_pArg:", data);
+        next();
+    });
+});
+
+
 
 
 
@@ -366,12 +454,12 @@ callbackQueue.push(callback => {
 //*/
 
 
-callbackQueue.push(next => {
-    benchmarkFunction.sync(harmfullCodeInject, data => {
-        console.log("harmfullCodeInject:", data);
-        next();
-    });
-});
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(harmfullCodeInject, data => {
+//         console.log("harmfullCodeInject:", data);
+//         next();
+//     });
+// });
 
 
 callbackQueue.push(next => {
