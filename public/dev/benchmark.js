@@ -322,7 +322,7 @@ export const fn_is_object_typeof = () => {
 };
 export const fn_is_object_typeof_wrap = () => {
     function isObj(data) {
-        return data !== null && typeof data === "object" && !data instanceof Array;
+        return data !== null && typeof data === "object";
     }
     return {
         measuringFunction() {

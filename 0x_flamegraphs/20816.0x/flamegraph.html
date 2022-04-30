@@ -12,7 +12,7 @@
       </style>
     </head>
     <body class='m0 bg-white sans-serif overflow-hidden'>
-      <script> 
+      <script>
     (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.visualizer = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 // https://d3js.org/d3-array/ v2.12.1 Copyright 2021 Mike Bostock
 (function (global, factory) {
@@ -6069,7 +6069,7 @@ function linearish(scale) {
       step = start, start = stop, stop = step;
       step = i0, i0 = i1, i1 = step;
     }
-    
+
     while (maxIter-- > 0) {
       step = d3Array.tickIncrement(start, stop, count);
       if (step === prestep) {
@@ -11786,8 +11786,8 @@ arguments[4][17][0].apply(exports,arguments)
  * Returns a function, that, as long as it continues to be invoked, will not
  * be triggered. The function will be called after it stops being called for
  * N milliseconds. If `immediate` is passed, trigger the function on the
- * leading edge, instead of the trailing. The function also has a property 'clear' 
- * that is a function which will clear the timer to prevent previously scheduled executions. 
+ * leading edge, instead of the trailing. The function also has a property 'clear'
+ * that is a function which will clear the timer to prevent previously scheduled executions.
  *
  * @source underscore.js
  * @see http://unscriptable.com/2009/03/20/debouncing-javascript-methods/
@@ -11834,12 +11834,12 @@ function debounce(func, wait, immediate){
       timeout = null;
     }
   };
-  
+
   debounced.flush = function() {
     if (timeout) {
       result = func.apply(context, args);
       context = args = null;
-      
+
       clearTimeout(timeout);
       timeout = null;
     }
@@ -13652,8 +13652,8 @@ module.exports = (render) => ({ title }) => render`
 const createHoc = (render) => ({ bg, exclude, name, lbl, disabled = false }, action) => {
   const pressed = !disabled && !exclude.has(name)
   return render`
-    <button 
-      class="f7 pointer br2 ba mb0 dib black-70 lh-title border-box ml1 ${pressed ? 'b--black' : ''} ${disabled ? 'o-50 gray' : ''}" 
+    <button
+      class="f7 pointer br2 ba mb0 dib black-70 lh-title border-box ml1 ${pressed ? 'b--black' : ''} ${disabled ? 'o-50 gray' : ''}"
       ${disabled ? 'disabled' : ''}
       style="
         ${pressed ? 'box-shadow: 0 0 0 1px black;' : ''}
@@ -13922,4 +13922,3 @@ function parseHistoryState (str) {
    </script>
     </body>
     </html>
-  
