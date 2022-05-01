@@ -21,9 +21,9 @@
     },
     "homepage": "https://github.com/BerendKemper/app#readme",
     "dependencies": {
-        "emperjs": "^1.3.6",
-        "file-operator": "^1.1.5",
-        "filestream-logger": "^2.2.7",
+        "emperjs": "^1.3.7",
+        "file-operator": "^1.1.6",
+        "filestream-logger": "^2.2.8",
         "indent-model": "^1.0.5",
         "locale-timezone-date": "^5.0.1",
         "task-clock": "^2.2.1"

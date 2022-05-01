@@ -87,6 +87,7 @@ app.get("/public/:dir/:file", (request, response) => {
 
 app.use("/monkey/says/hoehoe", function f1(request, response, next) {
     console.log("I am invoked in any request starting at path /monkey/says/hoehoe");
+    console.log("i am no longer a CallbackQueue", this);
     next();
 });
 app.use("/monkey/says/", function f2(request, response, next) {
