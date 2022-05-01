@@ -156,6 +156,15 @@ app.post("/body/:monkey", (request, response) => {
     response.sendJson(200, request.body);
 });
 
+
+
+/**
+ * DO NOT USE THIS BENCHMARK IN PRODUCTION!!!!!!!!!!!!!!
+ * IT HAS SERIOUS ISSUES LIKE HACKERS CAN INFILTRATE YOUR COMPUTER
+ * THEY COULD INFECT YOUR COMPUTER WITH VIRUS APPLICATIONS, BITCOIN MINERS ETC
+ *
+ * If you use this benchmark, use it only in enviroments that are not open to the internet.
+*/
 app.post("/benchmark/sync", (request, response) => {
     try {
         const benchObject = makeBenchObject(request.body.fn);
@@ -165,6 +174,7 @@ app.post("/benchmark/sync", (request, response) => {
         return response.sendError(409, error);
     }
 });
+
 /*
 app.post("/benchmark/async", (request, response) => {
     try {
