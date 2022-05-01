@@ -101,7 +101,7 @@ app.use("/", function f0(request, response, next) {
 
 app.get("/monkey/says/hoehoe", function (request, response) {
     response.end("1");
-})
+});
 
 
 //////////////////////////////////
