@@ -150,7 +150,10 @@ app.post("/body", (request, response) => {
     console.log(request.body)
     response.sendJson(200, request.body);
 });
-
+app.post("/body/:monkey", (request, response) => {
+    console.log(request.body)
+    response.sendJson(200, request.body);
+});
 
 app.post("/benchmark/sync", (request, response) => {
     try {
