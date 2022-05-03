@@ -22,7 +22,9 @@ import {
     fn_is_object_typeof_wrap,
     fn_for_of_object,
     fn_for_in_object,
+    fn_for_of_object_values,
     fn_for_of_array,
+    fn_for_of_keys_object,
     harmfullCodeInject,
     fn_set_kArg,
     fn_set_arg,
@@ -214,11 +216,24 @@ callbackQueue.push(next => {
     });
 });
 callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_for_of_object_values, data => {
+        console.log("fn_for_of_object_values:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
     benchmarkFunction.sync(fn_for_of_object, data => {
         console.log("fn_for_of_object:", data);
         next();
     });
 });
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_for_of_keys_object, data => {
+        console.log("fn_for_of_keys_object:", data);
+        next();
+    });
+});
+
 callbackQueue.push(next => {
     benchmarkFunction.sync(fn_for_in_object, data => {
         console.log("fn_for_in_object:", data);
@@ -232,11 +247,24 @@ callbackQueue.push(next => {
     });
 });
 callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_for_of_object_values, data => {
+        console.log("fn_for_of_object_values:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
     benchmarkFunction.sync(fn_for_of_object, data => {
         console.log("fn_for_of_object:", data);
         next();
     });
 });
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_for_of_keys_object, data => {
+        console.log("fn_for_of_keys_object:", data);
+        next();
+    });
+});
+
 callbackQueue.push(next => {
     benchmarkFunction.sync(fn_for_in_object, data => {
         console.log("fn_for_in_object:", data);
@@ -246,6 +274,18 @@ callbackQueue.push(next => {
 callbackQueue.push(next => {
     benchmarkFunction.sync(fn_for_of_array, data => {
         console.log("fn_for_of_array:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_for_of_object_values, data => {
+        console.log("fn_for_of_object_values:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_for_of_keys_object, data => {
+        console.log("fn_for_of_keys_object:", data);
         next();
     });
 });

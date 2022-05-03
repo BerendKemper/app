@@ -379,6 +379,49 @@ export const fn_for_in_object = () => {
         }
     };
 };
+export const fn_for_of_object_values = () => {
+    const obj = {
+        9: "a",
+        8: "b",
+        7: "c",
+        6: "d",
+        5: "e",
+        4: "f",
+        3: "g",
+        2: "h",
+        1: "i",
+        0: "j",
+    };
+    return {
+        measuringFunction() {
+            for (const key in Object.values(obj)) {
+                obj[key];
+            }
+        }
+    };
+};
+export const fn_for_of_keys_object = () => {
+    const obj = {
+        9: "a",
+        8: "b",
+        7: "c",
+        6: "d",
+        5: "e",
+        4: "f",
+        3: "g",
+        2: "h",
+        1: "i",
+        0: "j",
+    };
+    const keys = Object.keys(obj);
+    return {
+        measuringFunction() {
+            for (const key of keys) {
+                obj[key];
+            }
+        }
+    };
+};
 export const fn_for_of_array = () => {
     const arr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
     return {
