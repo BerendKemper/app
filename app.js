@@ -175,6 +175,8 @@ app.post("/benchmark/sync", (request, response) => {
     }
 });
 
+
+
 /*
 app.post("/benchmark/async", (request, response) => {
     try {
