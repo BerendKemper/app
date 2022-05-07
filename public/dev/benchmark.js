@@ -264,7 +264,7 @@ export const fn_args_spread2 = () => {
 };
 
 export const fn_invoke = () => {
-    function fn_toTest(fn) { }
+    function fn_toTest(arg) { }
     return {
         measuringFunction() {
             fn_toTest({});
@@ -273,10 +273,19 @@ export const fn_invoke = () => {
 };
 
 export const fn_invoke_call = () => {
-    function fn_toTest(fn) { }
+    function fn_toTest() { }
     return {
         measuringFunction() {
             fn_toTest.call({});
+        }
+    };
+};
+
+export const fn_invoke_reflect_apply = () => {
+    function fn_toTest(fn) { }
+    return {
+        measuringFunction() {
+            Reflect.apply(fn_toTest, {}, []);
         }
     };
 };
