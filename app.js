@@ -1,42 +1,15 @@
 "use strict";
 
-// npm modules
-const FilestreamLogger = require("filestream-logger");
-const App = require("emperjs")("http");
-const FileOperator = require("file-operator");
-const LocaleTimezoneDate = require("locale-timezone-date");
+const EmperServer = require("./lib/emperserver")
 
-// internal modules
 const data_01 = require("./lib/data");
 const { makeBenchObject, benchmarkSync } = require("./lib/benchmark");
-const logger = require("./lib/logger");
-const SchedulerApiRecorder = require("./lib/schedulerApiRecorder");
 
 
-///////////////////////////////////////////////////////////////
+
+const app = new EmperServer();
 
 
-/*
-App.IncomingMessage = class Req extends App.IncomingMessage { };
-App.ServerResponse = class Res extends App.ServerResponse { };
-console.log(App.IncomingMessage, App.ServerResponse);
-
-App.ApiRecord = class MyApiRecord extends App.ApiRecord { };
-console.log(App.ApiRecord);
-
-console.log(App.IncomingMessage.dataParsers);
-//*/
-
-
-///////////////////////////////////////////////////////////////
-
-
-App.logger.log = logger.log;
-App.logger.error = logger.error;
-App.logger.debug = logger.debug;
-const app = new App();
-
-// const app2 = new app(); // this will result in an Error. You could make a second app by makeing a second App2 = require("emperjs")("http"). Or even better write a second node js app
 
 
 console.log("app instanceof http.Server?", app instanceof require("http").Server);
@@ -44,15 +17,7 @@ console.log("http.Server property requestTimeout:", app.requestTimeout);
 
 
 
-new SchedulerApiRecorder(app, {
-    start: new LocaleTimezoneDate().startOfDate({ ms: false }),
-    interval: { h: 24 },
-    onReady: function () {
-        app.listen(null, function () {
-            console.log(`Listening on: ${this.url}`);
-        });
-    }
-});
+
 
 
 //////////////////////////////////
@@ -187,16 +152,6 @@ app.post("/benchmark/async", (request, response) => {
     }
 });
 //*/
-function safeExit() {
-    process.exit();
-}
-process.on("SIGINT", () => {
-    logger.error("Node JS is now shutting down due to pressing ctrl + c");
-    FileOperator.saveAndExitAll({
-        log: logger.log,
-        callback() {
-            FilestreamLogger.destroyAll(safeExit);
-        }
-    });
-    setTimeout(safeExit, 2000);
-});
+
+
+app.start();
