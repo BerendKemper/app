@@ -26,6 +26,6 @@
         "filestream-logger": "^2.2.8",
         "indent-model": "^1.0.5",
         "locale-timezone-date": "^5.0.1",
-        "task-clock": "^2.2.2"
+        "task-clock": "^2.2.3"
     }
 }
