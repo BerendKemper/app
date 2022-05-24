@@ -5,36 +5,37 @@ const EmperServer = require("./lib/emperserver")
 const { makeBenchObject, benchmarkSync } = require("./lib/benchmark");
 const data_01 = require("./lib/data");
 
-const app = new EmperServer();
+const server = new EmperServer();
 
 
-console.log("app instanceof http.Server?", app instanceof require("http").Server);
-console.log("http.Server property requestTimeout:", app.requestTimeout);
+console.log("server instanceof http.Server?", server instanceof require("http").Server);
+console.log("http.Server property requestTimeout:", server.requestTimeout);
 
 
-EmperServer.IncomingMessage.bodyParsers
+EmperServer.IncomingMessage.bodyParsers["application/json"]
+EmperServer.IncomingMessage.bodyParsers["application/x-www-form-urlencoded"]
 //////////////////////////////////
 //    File system endpoints     //
 //////////////////////////////////
 
 
 
-app.get("/favicon.ico", (request, response) => {
+server.get("/favicon.ico", (request, response) => {
     response.sendFile("./public/icon/favicon.ico");
 }, { record: false });
 
-app.get("/", (request, response) => {
+server.get("/", (request, response) => {
     response.sendFile("./public/html/index.html")
         .sendFile("./public/html/second.html")
         .sendFile("./public/html/third.html")
         .sendFile("./public/txt/large.txt");
 });
 
-app.get("/myBenchmarks", (request, response) => {
+server.get("/myBenchmarks", (request, response) => {
     response.sendFile("./public/html/benchmark.html");
 });
 
-app.get("/public/:dir/:file", (request, response) => {
+server.get("/public/:dir/:file", (request, response) => {
     response.sendFile(`./public/${request.params.dir}/${request.params.file}`);
 });
 
@@ -43,21 +44,21 @@ app.get("/public/:dir/:file", (request, response) => {
 //        Some middleware       //
 //////////////////////////////////
 
-app.use("/monkey/says/hoehoe", function f1(request, response, next) {
+server.use("/monkey/says/hoehoe", function f1(request, response, next) {
     console.log("I am invoked in any request starting at path /monkey/says/hoehoe");
     console.log("i am no longer a CallbackQueue", this);
     next();
 });
-app.use("/monkey/says/", function f2(request, response, next) {
+server.use("/monkey/says/", function f2(request, response, next) {
     console.log("I am invoked in any request starting at path /monkey/says/");
     next();
 });
-app.use("/", function f0(request, response, next) {
+server.use("/", function f0(request, response, next) {
     console.log("I am invoked in every request and i am always invoked first");
     next();
 });
 
-app.get("/monkey/says/hoehoe", function (request, response) {
+server.get("/monkey/says/hoehoe", function (request, response) {
     response.end("1");
 });
 
@@ -66,16 +67,16 @@ app.get("/monkey/says/hoehoe", function (request, response) {
 //      Some REST endpoints     //
 //////////////////////////////////
 
-app.get("/apis", (request, response) => {
-    response.sendJson(200, app.apis);
+server.get("/apis", (request, response) => {
+    response.sendJson(200, server.apis);
 }, { record: false });
 
-app.get("/artists", (request, response) => {
+server.get("/artists", (request, response) => {
     const users = data_01.artists.data;
     response.sendJson(200, users);
 }, { record: false });
 
-app.get("/artists/:id", (request, response) => {
+server.get("/artists/:id", (request, response) => {
     const artist = data_01.artists[request.params.id];
     if (!artist)
         return response.sendError(404, new Error(`The Artist "${request.params.id}" does not exist`));
@@ -83,7 +84,7 @@ app.get("/artists/:id", (request, response) => {
     response.sendJson(200, user);
 }, { record: false });
 
-app.get("/artists/:id/albums", (request, response) => {
+server.get("/artists/:id/albums", (request, response) => {
     const artist = data_01.artists[request.params.id];
     if (!artist)
         return response.sendError(404, new Error(`The Artist "${request.params.id}" does not exist`));
@@ -95,7 +96,7 @@ app.get("/artists/:id/albums", (request, response) => {
 //       Socket endpoint        //
 //////////////////////////////////
 
-app.get("/socket", (request, response) => {
+server.get("/socket", (request, response) => {
     console.log(!!request, !!response);
     console.log(request.upgrade);
     // request.socket.write(Buffer.from("mongol"));
@@ -105,11 +106,11 @@ app.get("/socket", (request, response) => {
 //        test endpoint         //
 //////////////////////////////////
 
-app.post("/body", (request, response) => {
+server.post("/body", (request, response) => {
     console.log(request.body)
     response.sendJson(200, request.body);
 });
-app.post("/body/:monkey", (request, response) => {
+server.post("/body/:monkey", (request, response) => {
     console.log(request.body)
     response.sendJson(200, request.body);
 });
@@ -123,7 +124,7 @@ app.post("/body/:monkey", (request, response) => {
  *
  * If you use this benchmark, use it only in enviroments that are not open to the internet.
 */
-app.post("/benchmark/sync", (request, response) => {
+server.post("/benchmark/sync", (request, response) => {
     try {
         const benchObject = makeBenchObject(request.body.fn);
         const benchResult = benchmarkSync(benchObject);
@@ -136,7 +137,7 @@ app.post("/benchmark/sync", (request, response) => {
 
 
 /*
-app.post("/benchmark/async", (request, response) => {
+server.post("/benchmark/async", (request, response) => {
     try {
         const fn = makeFunction(request.data.fn);
         benchmarkAsync(fn, opsPerSec => response.sendJson(200, { "ops/sec": opsPerSec }));
@@ -147,4 +148,4 @@ app.post("/benchmark/async", (request, response) => {
 //*/
 
 
-app.start();
+server.start();
