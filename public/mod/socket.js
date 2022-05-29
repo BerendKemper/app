@@ -10,16 +10,18 @@ function mongol(socket, counter = 0, msg = "") {
 socket.addEventListener("open", function (event) {
     closed = false;
     console.log("open", event);
-    socket.send("");
+    // socket.send("");
     setTimeout(() => {
         socket.send("abcdefghijklmnopqrstuvwxyz");
         setTimeout(() => {
-            // socket.send("test");
+            socket.send("test");
+            setTimeout(() => {
+                mongol(socket);
+            }, 100);
         }, 100)
     }, 100);
     // socket.send(0);
-    // socket.send(new Int8Array([97, 98]));
-    // mongol(socket);
+    socket.send(new Int8Array([97, 98]));
 });
 socket.addEventListener("message", function (event) {
     console.log("message", event);
