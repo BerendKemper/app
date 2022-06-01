@@ -5,7 +5,7 @@ function a0to10(socket, msg = "") {
     socket.send(msg);
     if (!closed) {
         msg.length <= 10
-            ? setTimeout(a0to4, 100, socket, msg + "a")
+            ? setTimeout(a0to10, 100, socket, msg + "a")
             : setTimeout(a120to130, 100, socket);
     }
 }
