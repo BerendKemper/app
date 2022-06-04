@@ -35,7 +35,8 @@ import {
     fn_get_pArg,
     fn_object_create,
     fn_object_create_null,
-
+    fn_shift8bits,
+    fn_multiply256,
 } from "../dev/benchmark.js";
 import { CallbackQueue } from "../mod/callback-queue.js";
 
@@ -434,78 +435,78 @@ const callbackQueue = new CallbackQueue();
 
 
 
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_invoke, data => {
-        console.log("fn_invoke:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_invoke_call, data => {
-        console.log("fn_invoke_call:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_invoke_reflect_apply, data => {
-        console.log("fn_invoke_reflect_apply:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_invoke, data => {
-        console.log("fn_invoke:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_invoke_call, data => {
-        console.log("fn_invoke_call:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_invoke_reflect_apply, data => {
-        console.log("fn_invoke_reflect_apply:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_invoke, data => {
-        console.log("fn_invoke:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_invoke_call, data => {
-        console.log("fn_invoke_call:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_invoke_reflect_apply, data => {
-        console.log("fn_invoke_reflect_apply:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_invoke, data => {
-        console.log("fn_invoke:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_invoke_call, data => {
-        console.log("fn_invoke_call:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_invoke_reflect_apply, data => {
-        console.log("fn_invoke_reflect_apply:", data);
-        next();
-    });
-});
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_invoke, data => {
+//         console.log("fn_invoke:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_invoke_call, data => {
+//         console.log("fn_invoke_call:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_invoke_reflect_apply, data => {
+//         console.log("fn_invoke_reflect_apply:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_invoke, data => {
+//         console.log("fn_invoke:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_invoke_call, data => {
+//         console.log("fn_invoke_call:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_invoke_reflect_apply, data => {
+//         console.log("fn_invoke_reflect_apply:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_invoke, data => {
+//         console.log("fn_invoke:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_invoke_call, data => {
+//         console.log("fn_invoke_call:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_invoke_reflect_apply, data => {
+//         console.log("fn_invoke_reflect_apply:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_invoke, data => {
+//         console.log("fn_invoke:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_invoke_call, data => {
+//         console.log("fn_invoke_call:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_invoke_reflect_apply, data => {
+//         console.log("fn_invoke_reflect_apply:", data);
+//         next();
+//     });
+// });
 
 
 
@@ -593,6 +594,59 @@ callbackQueue.push(callback => {
 //         next();
 //     });
 // });
+
+
+
+
+
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_shift8bits, data => {
+        console.log("fn_shift8bits:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_multiply256, data => {
+        console.log("fn_multiply256:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_shift8bits, data => {
+        console.log("fn_shift8bits:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_multiply256, data => {
+        console.log("fn_multiply256:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_shift8bits, data => {
+        console.log("fn_shift8bits:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_multiply256, data => {
+        console.log("fn_multiply256:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_shift8bits, data => {
+        console.log("fn_shift8bits:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(fn_multiply256, data => {
+        console.log("fn_multiply256:", data);
+        next();
+    });
+});
 
 
 callbackQueue.push(next => {

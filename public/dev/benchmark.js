@@ -572,3 +572,19 @@ export const harmfullCodeInject = () => {
         }
     };
 };
+
+
+export const fn_shift8bits = () => {
+    return {
+        measuringFunction() {
+            255 << 8;
+        }
+    };
+};
+export const fn_multiply256 = () => {
+    return {
+        measuringFunction() {
+            255 * 256;
+        }
+    };
+};
