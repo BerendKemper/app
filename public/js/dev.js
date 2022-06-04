@@ -5,5 +5,5 @@ function numberToBinary(number) {
     return ("0000000" + number.toString(2)).slice(-8);
 }
 function parseIntCustom(string) {
-    return parseint(string.split(" ").join(""), 2);
+    return parseInt(string.split(" ").join(""), 2);
 }
