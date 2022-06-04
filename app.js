@@ -31,6 +31,10 @@ server.get("/", (request, response) => {
         .sendFile("./public/txt/large.txt");
 });
 
+server.get("/dev", (request, response) => {
+    response.sendFile("./public/html/dev.html");
+});
+
 server.get("/myBenchmarks", (request, response) => {
     response.sendFile("./public/html/benchmark.html");
 });
