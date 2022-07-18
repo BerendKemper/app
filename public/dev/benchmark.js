@@ -588,3 +588,37 @@ export const fn_multiply256 = () => {
         }
     };
 };
+
+export const nothing = () => {
+    return {
+        measuringFunction() {
+            return 1 + 1;
+        }
+    };
+};
+export const nothingVoid = () => {
+    return {
+        measuringFunction() {
+            return void (1 + 1);
+        }
+    };
+};
+
+export const has_keys_obj_keys_n = () => {
+    const obj = { z: 9, a: 8, b: 7, c: 6, d: 5, e: 4, f: 3, g: 2, h: 1, i: 0 };
+    return {
+        measuringFunction() {
+            return Object.keys(obj).length === 0;
+        }
+    };
+};
+
+export const has_keys_key_in_obj_loop = () => {
+    const obj = { z: 9, a: 8, b: 7, c: 6, d: 5, e: 4, f: 3, g: 2, h: 1, i: 0 };
+    return {
+        measuringFunction() {
+            for (const key in obj) return false;
+            return true;
+        }
+    };
+};

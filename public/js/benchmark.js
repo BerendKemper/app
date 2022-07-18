@@ -37,6 +37,10 @@ import {
     fn_object_create_null,
     fn_shift8bits,
     fn_multiply256,
+    nothing,
+    nothingVoid,
+    has_keys_obj_keys_n,
+    has_keys_key_in_obj_loop
 } from "../dev/benchmark.js";
 import { CallbackQueue } from "../mod/callback-queue.js";
 
@@ -599,54 +603,149 @@ callbackQueue.push(callback => {
 
 
 
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_shift8bits, data => {
+//         console.log("fn_shift8bits:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_multiply256, data => {
+//         console.log("fn_multiply256:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_shift8bits, data => {
+//         console.log("fn_shift8bits:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_multiply256, data => {
+//         console.log("fn_multiply256:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_shift8bits, data => {
+//         console.log("fn_shift8bits:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_multiply256, data => {
+//         console.log("fn_multiply256:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_shift8bits, data => {
+//         console.log("fn_shift8bits:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_multiply256, data => {
+//         console.log("fn_multiply256:", data);
+//         next();
+//     });
+// });
+
+
+
+
+
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(nothing, data => {
+//         console.log("nothing:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(nothingVoid, data => {
+//         console.log("nothingVoid:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(nothing, data => {
+//         console.log("nothing:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(nothingVoid, data => {
+//         console.log("nothingVoid:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(nothing, data => {
+//         console.log("nothing:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(nothingVoid, data => {
+//         console.log("nothingVoid:", data);
+//         next();
+//     });
+// });
+
+
+
+
+
 callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_shift8bits, data => {
-        console.log("fn_shift8bits:", data);
+    benchmarkFunction.sync(has_keys_obj_keys_n, data => {
+        console.log("has_keys_obj_keys_n:", data);
         next();
     });
 });
 callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_multiply256, data => {
-        console.log("fn_multiply256:", data);
+    benchmarkFunction.sync(has_keys_key_in_obj_loop, data => {
+        console.log("has_keys_key_in_obj_loop:", data);
         next();
     });
 });
 callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_shift8bits, data => {
-        console.log("fn_shift8bits:", data);
+    benchmarkFunction.sync(has_keys_obj_keys_n, data => {
+        console.log("has_keys_obj_keys_n:", data);
         next();
     });
 });
 callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_multiply256, data => {
-        console.log("fn_multiply256:", data);
+    benchmarkFunction.sync(has_keys_key_in_obj_loop, data => {
+        console.log("has_keys_key_in_obj_loop:", data);
         next();
     });
 });
 callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_shift8bits, data => {
-        console.log("fn_shift8bits:", data);
+    benchmarkFunction.sync(has_keys_obj_keys_n, data => {
+        console.log("has_keys_obj_keys_n:", data);
         next();
     });
 });
 callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_multiply256, data => {
-        console.log("fn_multiply256:", data);
+    benchmarkFunction.sync(has_keys_key_in_obj_loop, data => {
+        console.log("has_keys_key_in_obj_loop:", data);
         next();
     });
 });
 callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_shift8bits, data => {
-        console.log("fn_shift8bits:", data);
+    benchmarkFunction.sync(has_keys_obj_keys_n, data => {
+        console.log("has_keys_obj_keys_n:", data);
         next();
     });
 });
 callbackQueue.push(next => {
-    benchmarkFunction.sync(fn_multiply256, data => {
-        console.log("fn_multiply256:", data);
+    benchmarkFunction.sync(has_keys_key_in_obj_loop, data => {
+        console.log("has_keys_key_in_obj_loop:", data);
         next();
     });
 });
+
 
 
 callbackQueue.push(next => {
