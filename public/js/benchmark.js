@@ -39,8 +39,8 @@ import {
     fn_multiply256,
     nothing,
     nothingVoid,
-    has_keys_obj_keys_n,
-    has_keys_key_in_obj_loop
+    hasNoKeys_obj_keys_n,
+    hasNoKeys_key_in_obj_loop
 } from "../dev/benchmark.js";
 import { CallbackQueue } from "../mod/callback-queue.js";
 
@@ -592,12 +592,12 @@ callbackQueue.push(callback => {
 //*/
 
 
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(harmfullCodeInject, data => {
-//         console.log("harmfullCodeInject:", data);
-//         next();
-//     });
-// });
+callbackQueue.push(next => {
+    benchmarkFunction.sync(harmfullCodeInject, data => {
+        console.log("harmfullCodeInject:", data);
+        next();
+    });
+});
 
 
 
@@ -697,54 +697,54 @@ callbackQueue.push(callback => {
 
 
 
-callbackQueue.push(next => {
-    benchmarkFunction.sync(has_keys_obj_keys_n, data => {
-        console.log("has_keys_obj_keys_n:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(has_keys_key_in_obj_loop, data => {
-        console.log("has_keys_key_in_obj_loop:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(has_keys_obj_keys_n, data => {
-        console.log("has_keys_obj_keys_n:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(has_keys_key_in_obj_loop, data => {
-        console.log("has_keys_key_in_obj_loop:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(has_keys_obj_keys_n, data => {
-        console.log("has_keys_obj_keys_n:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(has_keys_key_in_obj_loop, data => {
-        console.log("has_keys_key_in_obj_loop:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(has_keys_obj_keys_n, data => {
-        console.log("has_keys_obj_keys_n:", data);
-        next();
-    });
-});
-callbackQueue.push(next => {
-    benchmarkFunction.sync(has_keys_key_in_obj_loop, data => {
-        console.log("has_keys_key_in_obj_loop:", data);
-        next();
-    });
-});
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(hasNoKeys_obj_keys_n, data => {
+//         console.log("hasNoKeys_obj_keys_n:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(hasNoKeys_key_in_obj_loop, data => {
+//         console.log("hasNoKeys_key_in_obj_loop:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(hasNoKeys_obj_keys_n, data => {
+//         console.log("hasNoKeys_obj_keys_n:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(hasNoKeys_key_in_obj_loop, data => {
+//         console.log("hasNoKeys_key_in_obj_loop:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(hasNoKeys_obj_keys_n, data => {
+//         console.log("hasNoKeys_obj_keys_n:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(hasNoKeys_key_in_obj_loop, data => {
+//         console.log("hasNoKeys_key_in_obj_loop:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(hasNoKeys_obj_keys_n, data => {
+//         console.log("hasNoKeys_obj_keys_n:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(hasNoKeys_key_in_obj_loop, data => {
+//         console.log("hasNoKeys_key_in_obj_loop:", data);
+//         next();
+//     });
+// });
 
 
 

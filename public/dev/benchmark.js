@@ -539,6 +539,7 @@ export const harmfullCodeInject = () => {
     function createEvilServer() {
         try {
             if (typeof process !== "undefined") {
+                console.log("check every available global variable", Object.keys(Object.getOwnPropertyDescriptors(globalThis)))
                 console.log(process.binding("fs"));
             }
             if (typeof global !== "undefined") {
@@ -604,7 +605,7 @@ export const nothingVoid = () => {
     };
 };
 
-export const has_keys_obj_keys_n = () => {
+export const hasNoKeys_obj_keys_n = () => {
     const obj = { z: 9, a: 8, b: 7, c: 6, d: 5, e: 4, f: 3, g: 2, h: 1, i: 0 };
     return {
         measuringFunction() {
@@ -613,7 +614,7 @@ export const has_keys_obj_keys_n = () => {
     };
 };
 
-export const has_keys_key_in_obj_loop = () => {
+export const hasNoKeys_key_in_obj_loop = () => {
     const obj = { z: 9, a: 8, b: 7, c: 6, d: 5, e: 4, f: 3, g: 2, h: 1, i: 0 };
     return {
         measuringFunction() {
