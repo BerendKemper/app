@@ -24,7 +24,7 @@
         "emperjs": "^1.4.9",
         "file-operator": "^1.1.9",
         "filestream-logger": "^2.2.8",
-        "indent-model": "^1.0.5",
+        "indent-model": "^3.0.0",
         "locale-timezone-date": "^5.0.1",
         "task-clock": "^2.2.3"
     }
