@@ -623,3 +623,109 @@ export const hasNoKeys_key_in_obj_loop = () => {
         }
     };
 };
+
+export const slice10_arguments_proto = () => {
+    const args = Array.from(10).map((v, i) => i);
+    function fn() {
+        arguments.__proto__ = Array.prototype;
+        void (arguments.slice(1));
+    }
+    const bind10 = fn.bind(null, ...args);
+    return {
+        measuringFunction() {
+            bind10();
+        }
+    };
+};
+
+export const slice10_arguments_array_proto = () => {
+    const args = Array.from(10).map((v, i) => i);
+    function fn() {
+        void (Array.prototype.slice.call(arguments, 1));
+    }
+    const bind1000 = fn.bind(null, ...args);
+    return {
+        measuringFunction() {
+            bind1000();
+        }
+    };
+};
+
+export const slice10_arguments_array_from = () => {
+    const args = Array.from(10).map((v, i) => i);
+    function fn() {
+        void (Array.from(arguments).slice(1));
+    }
+    const bind10 = fn.bind(null, ...args);
+    return {
+        measuringFunction() {
+            bind10();
+        }
+    };
+};
+
+export const slice10_arguments_spread = () => {
+    const args = Array.from(10).map((v, i) => i);
+    function fn(arg, ...args) {
+        void (args);
+    }
+    const bind10 = fn.bind(null, ...args);
+    return {
+        measuringFunction() {
+            bind10();
+        }
+    };
+};
+
+export const slice1000_arguments_proto = () => {
+    const args = Array.from(1000).map((v, i) => i);
+    function fn() {
+        arguments.__proto__ = Array.prototype;
+        void (arguments.slice(1));
+    }
+    const bind1000 = fn.bind(null, ...args);
+    return {
+        measuringFunction() {
+            bind1000();
+        }
+    };
+};
+
+export const slice1000_arguments_array_proto = () => {
+    const args = Array.from(1000).map((v, i) => i);
+    function fn() {
+        void (Array.prototype.slice.call(arguments, 1));
+    }
+    const bind1000 = fn.bind(null, ...args);
+    return {
+        measuringFunction() {
+            bind1000();
+        }
+    };
+};
+
+export const slice1000_arguments_array_from = () => {
+    const args = Array.from(1000).map((v, i) => i);
+    function fn() {
+        void (Array.from(arguments).slice(1));
+    }
+    const bind1000 = fn.bind(null, ...args);
+    return {
+        measuringFunction() {
+            bind1000();
+        }
+    };
+};
+
+export const slice1000_arguments_spread = () => {
+    const args = Array.from(1000).map((v, i) => i);
+    function fn(arg, ...args) {
+        void (args);
+    }
+    const bind1000 = fn.bind(null, ...args);
+    return {
+        measuringFunction() {
+            bind1000();
+        }
+    };
+};

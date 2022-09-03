@@ -40,7 +40,15 @@ import {
     nothing,
     nothingVoid,
     hasNoKeys_obj_keys_n,
-    hasNoKeys_key_in_obj_loop
+    hasNoKeys_key_in_obj_loop,
+    slice10_arguments_proto,
+    slice10_arguments_array_proto,
+    slice10_arguments_array_from,
+    slice10_arguments_spread,
+    slice1000_arguments_proto,
+    slice1000_arguments_array_proto,
+    slice1000_arguments_array_from,
+    slice1000_arguments_spread,
 } from "../dev/benchmark.js";
 import { CallbackQueue } from "../mod/callback-queue.js";
 
@@ -592,9 +600,234 @@ callbackQueue.push(callback => {
 //*/
 
 
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(harmfullCodeInject, data => {
+//         console.log("harmfullCodeInject:", data);
+//         next();
+//     });
+// });
+
+
+
+
+
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_shift8bits, data => {
+//         console.log("fn_shift8bits:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_multiply256, data => {
+//         console.log("fn_multiply256:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_shift8bits, data => {
+//         console.log("fn_shift8bits:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_multiply256, data => {
+//         console.log("fn_multiply256:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_shift8bits, data => {
+//         console.log("fn_shift8bits:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_multiply256, data => {
+//         console.log("fn_multiply256:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_shift8bits, data => {
+//         console.log("fn_shift8bits:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(fn_multiply256, data => {
+//         console.log("fn_multiply256:", data);
+//         next();
+//     });
+// });
+
+
+
+
+
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(nothing, data => {
+//         console.log("nothing:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(nothingVoid, data => {
+//         console.log("nothingVoid:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(nothing, data => {
+//         console.log("nothing:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(nothingVoid, data => {
+//         console.log("nothingVoid:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(nothing, data => {
+//         console.log("nothing:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(nothingVoid, data => {
+//         console.log("nothingVoid:", data);
+//         next();
+//     });
+// });
+
+
+
+
+
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(hasNoKeys_obj_keys_n, data => {
+//         console.log("hasNoKeys_obj_keys_n:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(hasNoKeys_key_in_obj_loop, data => {
+//         console.log("hasNoKeys_key_in_obj_loop:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(hasNoKeys_obj_keys_n, data => {
+//         console.log("hasNoKeys_obj_keys_n:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(hasNoKeys_key_in_obj_loop, data => {
+//         console.log("hasNoKeys_key_in_obj_loop:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(hasNoKeys_obj_keys_n, data => {
+//         console.log("hasNoKeys_obj_keys_n:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(hasNoKeys_key_in_obj_loop, data => {
+//         console.log("hasNoKeys_key_in_obj_loop:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(hasNoKeys_obj_keys_n, data => {
+//         console.log("hasNoKeys_obj_keys_n:", data);
+//         next();
+//     });
+// });
+// callbackQueue.push(next => {
+//     benchmarkFunction.sync(hasNoKeys_key_in_obj_loop, data => {
+//         console.log("hasNoKeys_key_in_obj_loop:", data);
+//         next();
+//     });
+// });
+
+
+
+
+
+
 callbackQueue.push(next => {
-    benchmarkFunction.sync(harmfullCodeInject, data => {
-        console.log("harmfullCodeInject:", data);
+    benchmarkFunction.sync(slice10_arguments_proto, data => {
+        console.log("slice10_arguments_proto:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice10_arguments_array_proto, data => {
+        console.log("slice10_arguments_array_proto:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice10_arguments_array_from, data => {
+        console.log("slice10_arguments_array_from:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice10_arguments_spread, data => {
+        console.log("slice10_arguments_spread:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice10_arguments_proto, data => {
+        console.log("slice10_arguments_proto:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice10_arguments_array_proto, data => {
+        console.log("slice10_arguments_array_proto:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice10_arguments_array_from, data => {
+        console.log("slice10_arguments_array_from:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice10_arguments_spread, data => {
+        console.log("slice10_arguments_spread:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice10_arguments_proto, data => {
+        console.log("slice10_arguments_proto:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice10_arguments_array_proto, data => {
+        console.log("slice10_arguments_array_proto:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice10_arguments_array_from, data => {
+        console.log("slice10_arguments_array_from:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice10_arguments_spread, data => {
+        console.log("slice10_arguments_spread:", data);
         next();
     });
 });
@@ -603,148 +836,83 @@ callbackQueue.push(next => {
 
 
 
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(fn_shift8bits, data => {
-//         console.log("fn_shift8bits:", data);
-//         next();
-//     });
-// });
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(fn_multiply256, data => {
-//         console.log("fn_multiply256:", data);
-//         next();
-//     });
-// });
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(fn_shift8bits, data => {
-//         console.log("fn_shift8bits:", data);
-//         next();
-//     });
-// });
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(fn_multiply256, data => {
-//         console.log("fn_multiply256:", data);
-//         next();
-//     });
-// });
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(fn_shift8bits, data => {
-//         console.log("fn_shift8bits:", data);
-//         next();
-//     });
-// });
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(fn_multiply256, data => {
-//         console.log("fn_multiply256:", data);
-//         next();
-//     });
-// });
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(fn_shift8bits, data => {
-//         console.log("fn_shift8bits:", data);
-//         next();
-//     });
-// });
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(fn_multiply256, data => {
-//         console.log("fn_multiply256:", data);
-//         next();
-//     });
-// });
+
+
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice1000_arguments_proto, data => {
+        console.log("slice1000_arguments_proto:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice1000_arguments_array_proto, data => {
+        console.log("slice1000_arguments_array_proto:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice1000_arguments_array_from, data => {
+        console.log("slice1000_arguments_array_from:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice1000_arguments_spread, data => {
+        console.log("slice1000_arguments_spread:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice1000_arguments_proto, data => {
+        console.log("slice1000_arguments_proto:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice1000_arguments_array_proto, data => {
+        console.log("slice1000_arguments_array_proto:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice1000_arguments_array_from, data => {
+        console.log("slice1000_arguments_array_from:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice1000_arguments_spread, data => {
+        console.log("slice1000_arguments_spread:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice1000_arguments_proto, data => {
+        console.log("slice1000_arguments_proto:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice1000_arguments_array_proto, data => {
+        console.log("slice1000_arguments_array_proto:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice1000_arguments_array_from, data => {
+        console.log("slice1000_arguments_array_from:", data);
+        next();
+    });
+});
+callbackQueue.push(next => {
+    benchmarkFunction.sync(slice1000_arguments_spread, data => {
+        console.log("slice1000_arguments_spread:", data);
+        next();
+    });
+});
 
 
 
-
-
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(nothing, data => {
-//         console.log("nothing:", data);
-//         next();
-//     });
-// });
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(nothingVoid, data => {
-//         console.log("nothingVoid:", data);
-//         next();
-//     });
-// });
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(nothing, data => {
-//         console.log("nothing:", data);
-//         next();
-//     });
-// });
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(nothingVoid, data => {
-//         console.log("nothingVoid:", data);
-//         next();
-//     });
-// });
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(nothing, data => {
-//         console.log("nothing:", data);
-//         next();
-//     });
-// });
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(nothingVoid, data => {
-//         console.log("nothingVoid:", data);
-//         next();
-//     });
-// });
-
-
-
-
-
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(hasNoKeys_obj_keys_n, data => {
-//         console.log("hasNoKeys_obj_keys_n:", data);
-//         next();
-//     });
-// });
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(hasNoKeys_key_in_obj_loop, data => {
-//         console.log("hasNoKeys_key_in_obj_loop:", data);
-//         next();
-//     });
-// });
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(hasNoKeys_obj_keys_n, data => {
-//         console.log("hasNoKeys_obj_keys_n:", data);
-//         next();
-//     });
-// });
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(hasNoKeys_key_in_obj_loop, data => {
-//         console.log("hasNoKeys_key_in_obj_loop:", data);
-//         next();
-//     });
-// });
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(hasNoKeys_obj_keys_n, data => {
-//         console.log("hasNoKeys_obj_keys_n:", data);
-//         next();
-//     });
-// });
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(hasNoKeys_key_in_obj_loop, data => {
-//         console.log("hasNoKeys_key_in_obj_loop:", data);
-//         next();
-//     });
-// });
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(hasNoKeys_obj_keys_n, data => {
-//         console.log("hasNoKeys_obj_keys_n:", data);
-//         next();
-//     });
-// });
-// callbackQueue.push(next => {
-//     benchmarkFunction.sync(hasNoKeys_key_in_obj_loop, data => {
-//         console.log("hasNoKeys_key_in_obj_loop:", data);
-//         next();
-//     });
-// });
 
 
 
